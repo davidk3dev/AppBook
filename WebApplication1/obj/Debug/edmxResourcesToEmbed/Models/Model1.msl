@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="appbookModelStoreContainer" CdmEntityContainer="appbookEntities2">
+    <EntitySetMapping Name="tb_account">
+      <EntityTypeMapping TypeName="appbookModel.tb_account">
+        <MappingFragment StoreEntitySet="tb_account">
+          <ScalarProperty Name="id_account" ColumnName="id_account" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="full_name" ColumnName="full_name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_bai">
+      <EntityTypeMapping TypeName="appbookModel.tb_bai">
+        <MappingFragment StoreEntitySet="tb_bai">
+          <ScalarProperty Name="id_bai" ColumnName="id_bai" />
+          <ScalarProperty Name="id_chuyende" ColumnName="id_chuyende" />
+          <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+          <ScalarProperty Name="xuat_ban" ColumnName="xuat_ban" />
+          <ScalarProperty Name="thu_tu" ColumnName="thu_tu" />
+          <ScalarProperty Name="bai_mau" ColumnName="bai_mau" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_baimau">
+      <EntityTypeMapping TypeName="appbookModel.tb_baimau">
+        <MappingFragment StoreEntitySet="tb_baimau">
+          <ScalarProperty Name="id_baimau" ColumnName="id_baimau" />
+          <ScalarProperty Name="id_bai" ColumnName="id_bai" />
+          <ScalarProperty Name="id_account" ColumnName="id_account" />
+          <ScalarProperty Name="ten_baimau" ColumnName="ten_baimau" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_cauhoi">
+      <EntityTypeMapping TypeName="appbookModel.tb_cauhoi">
+        <MappingFragment StoreEntitySet="tb_cauhoi">
+          <ScalarProperty Name="id_cauhoi" ColumnName="id_cauhoi" />
+          <ScalarProperty Name="id_bai" ColumnName="id_bai" />
+          <ScalarProperty Name="xuat_ban" ColumnName="xuat_ban" />
+          <ScalarProperty Name="loai_cau_hoi" ColumnName="loai_cau_hoi" />
+          <ScalarProperty Name="phuong_thuc_check_dap_an" ColumnName="phuong_thuc_check_dap_an" />
+          <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+          <ScalarProperty Name="gia_tri_dung" ColumnName="gia_tri_dung" />
+          <ScalarProperty Name="thu_tu" ColumnName="thu_tu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_chuyende">
+      <EntityTypeMapping TypeName="appbookModel.tb_chuyende">
+        <MappingFragment StoreEntitySet="tb_chuyende">
+          <ScalarProperty Name="id_chuyende" ColumnName="id_chuyende" />
+          <ScalarProperty Name="id_thuvien" ColumnName="id_thuvien" />
+          <ScalarProperty Name="ten_chuyende" ColumnName="ten_chuyende" />
+          <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_comment">
+      <EntityTypeMapping TypeName="appbookModel.tb_comment">
+        <MappingFragment StoreEntitySet="tb_comment">
+          <ScalarProperty Name="id_comment" ColumnName="id_comment" />
+          <ScalarProperty Name="id_account" ColumnName="id_account" />
+          <ScalarProperty Name="id_cauhoi" ColumnName="id_cauhoi" />
+          <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+          <ScalarProperty Name="noi_dung" ColumnName="noi_dung" />
+          <ScalarProperty Name="reply_for" ColumnName="reply_for" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_dapan">
+      <EntityTypeMapping TypeName="appbookModel.tb_dapan">
+        <MappingFragment StoreEntitySet="tb_dapan">
+          <ScalarProperty Name="id_dapan" ColumnName="id_dapan" />
+          <ScalarProperty Name="id_cauhoi" ColumnName="id_cauhoi" />
+          <ScalarProperty Name="loai_dap_an" ColumnName="loai_dap_an" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_dapan_danhdau">
+      <EntityTypeMapping TypeName="appbookModel.tb_dapan_danhdau">
+        <MappingFragment StoreEntitySet="tb_dapan_danhdau">
+          <ScalarProperty Name="id_dapan" ColumnName="id_dapan" />
+          <ScalarProperty Name="vitri_dung" ColumnName="vitri_dung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_dapan_dientext">
+      <EntityTypeMapping TypeName="appbookModel.tb_dapan_dientext">
+        <MappingFragment StoreEntitySet="tb_dapan_dientext">
+          <ScalarProperty Name="id_dapan" ColumnName="id_dapan" />
+          <ScalarProperty Name="giatri_dung" ColumnName="giatri_dung" />
+          <ScalarProperty Name="help_text" ColumnName="help_text" />
+          <ScalarProperty Name="phuongthuc_check_dapan" ColumnName="phuongthuc_check_dapan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_dapan_sapxep">
+      <EntityTypeMapping TypeName="appbookModel.tb_dapan_sapxep">
+        <MappingFragment StoreEntitySet="tb_dapan_sapxep">
+          <ScalarProperty Name="id_dapan" ColumnName="id_dapan" />
+          <ScalarProperty Name="giatri" ColumnName="giatri" />
+          <ScalarProperty Name="noidung_hienthi" ColumnName="noidung_hienthi" />
+          <ScalarProperty Name="vitri_dung" ColumnName="vitri_dung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_dapan_singlechoice">
+      <EntityTypeMapping TypeName="appbookModel.tb_dapan_singlechoice">
+        <MappingFragment StoreEntitySet="tb_dapan_singlechoice">
+          <ScalarProperty Name="id_dapan" ColumnName="id_dapan" />
+          <ScalarProperty Name="noidung" ColumnName="noidung" />
+          <ScalarProperty Name="dapan_dung" ColumnName="dapan_dung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_templatenoidung">
+      <EntityTypeMapping TypeName="appbookModel.tb_templatenoidung">
+        <MappingFragment StoreEntitySet="tb_templatenoidung">
+          <ScalarProperty Name="id_templatenoidung" ColumnName="id_templatenoidung" />
+          <ScalarProperty Name="loai_template" ColumnName="loai_template" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_templatenoidung_bainghe">
+      <EntityTypeMapping TypeName="appbookModel.tb_templatenoidung_bainghe">
+        <MappingFragment StoreEntitySet="tb_templatenoidung_bainghe">
+          <ScalarProperty Name="id_templatenoidung" ColumnName="id_templatenoidung" />
+          <ScalarProperty Name="url" ColumnName="url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_templatenoidung_hinhanh">
+      <EntityTypeMapping TypeName="appbookModel.tb_templatenoidung_hinhanh">
+        <MappingFragment StoreEntitySet="tb_templatenoidung_hinhanh">
+          <ScalarProperty Name="id_templatenoidung" ColumnName="id_templatenoidung" />
+          <ScalarProperty Name="url" ColumnName="url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_templatenoidung_text">
+      <EntityTypeMapping TypeName="appbookModel.tb_templatenoidung_text">
+        <MappingFragment StoreEntitySet="tb_templatenoidung_text">
+          <ScalarProperty Name="id_templatenoidung" ColumnName="id_templatenoidung" />
+          <ScalarProperty Name="noidung" ColumnName="noidung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_templatenoidunghinhanh_format">
+      <EntityTypeMapping TypeName="appbookModel.tb_templatenoidunghinhanh_format">
+        <MappingFragment StoreEntitySet="tb_templatenoidunghinhanh_format">
+          <ScalarProperty Name="id_format" ColumnName="id_format" />
+          <ScalarProperty Name="id_templatenoidunghinhanh" ColumnName="id_templatenoidunghinhanh" />
+          <ScalarProperty Name="width" ColumnName="width" />
+          <ScalarProperty Name="height" ColumnName="height" />
+          <ScalarProperty Name="alignment" ColumnName="alignment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_templatenoidungtext_format">
+      <EntityTypeMapping TypeName="appbookModel.tb_templatenoidungtext_format">
+        <MappingFragment StoreEntitySet="tb_templatenoidungtext_format">
+          <ScalarProperty Name="id_format" ColumnName="id_format" />
+          <ScalarProperty Name="id_templatenoidungtext" ColumnName="id_templatenoidungtext" />
+          <ScalarProperty Name="ckeditor_text_format" ColumnName="ckeditor_text_format" />
+          <ScalarProperty Name="template_width" ColumnName="template_width" />
+          <ScalarProperty Name="template_heigth" ColumnName="template_heigth" />
+          <ScalarProperty Name="template_alignment" ColumnName="template_alignment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_thuvien">
+      <EntityTypeMapping TypeName="appbookModel.tb_thuvien">
+        <MappingFragment StoreEntitySet="tb_thuvien">
+          <ScalarProperty Name="id_thuvien" ColumnName="id_thuvien" />
+          <ScalarProperty Name="ten_thuvien" ColumnName="ten_thuvien" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_user">
+      <EntityTypeMapping TypeName="appbookModel.tb_user">
+        <MappingFragment StoreEntitySet="tb_user">
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="user_type" ColumnName="user_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="tb_bai_templatenoidung" TypeName="appbookModel.tb_bai_templatenoidung" StoreEntitySet="tb_bai_templatenoidung">
+      <EndProperty Name="tb_bai">
+        <ScalarProperty Name="id_bai" ColumnName="id_bai" />
+      </EndProperty>
+      <EndProperty Name="tb_templatenoidung">
+        <ScalarProperty Name="id_templatenoidung" ColumnName="id_templatenoidung" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="tb_cauhoi_templatenoidung" TypeName="appbookModel.tb_cauhoi_templatenoidung" StoreEntitySet="tb_cauhoi_templatenoidung">
+      <EndProperty Name="tb_cauhoi">
+        <ScalarProperty Name="id_cauhoi" ColumnName="id_cauhoi" />
+      </EndProperty>
+      <EndProperty Name="tb_templatenoidung">
+        <ScalarProperty Name="id_templatenoidung" ColumnName="id_templatenoidung" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="tb_templatenoidunghinhanh_format_mapping" TypeName="appbookModel.tb_templatenoidunghinhanh_format_mapping" StoreEntitySet="tb_templatenoidunghinhanh_format_mapping">
+      <EndProperty Name="tb_templatenoidunghinhanh_format">
+        <ScalarProperty Name="id_format" ColumnName="id_format" />
+      </EndProperty>
+      <EndProperty Name="tb_templatenoidung_hinhanh">
+        <ScalarProperty Name="id_templatenoidung" ColumnName="id_templatenoidung" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="tb_templatenoidungtext_format_mapping" TypeName="appbookModel.tb_templatenoidungtext_format_mapping" StoreEntitySet="tb_templatenoidungtext_format_mapping">
+      <EndProperty Name="tb_templatenoidung_text">
+        <ScalarProperty Name="id_templatenoidung" ColumnName="id_templatenoidung" />
+      </EndProperty>
+      <EndProperty Name="tb_templatenoidungtext_format">
+        <ScalarProperty Name="id_format" ColumnName="id_templatenoidung_text" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

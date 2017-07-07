@@ -1,0 +1,155 @@
+#form-taomoi-sach {
+    padding: 25px 25px 25px 25px;
+    /* border-bottom: 1px solid #bbbbbb; */
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.box-section{
+
+box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
+
+background-color: white;
+}
+.form-input-sach-info input, textarea{
+    width:100%;
+}
+.form-input-sach-info .row{
+    margin-bottom: 20px;
+}
+.form-input-sach-info .row:last-child{
+    margin-bottom: 0px;
+}
+.form-input-sach-info .row.row-span-two{
+    display: flex;
+}
+.form-input-sach-info .row.row-span-two .span-col{
+    flex-grow: 1;
+}
+.form-input-sach-info .row.row-span-two .span-col.fixed-width{
+    width: 130px;
+}
+.form-input-sach-info .row.row-span-two .span-col:first-child{
+    padding-right: 10px;
+}
+.form-input-sach-info .row.row-span-two .span-col:last-child{
+    padding-left: 20px;
+}
+
+#form-tao-moi-sach-wraper{
+    width:40%;
+}
+.box-section:first-child{
+    margin-right: 10px;
+}
+.box-section:last-child{
+    margin-left: 10px;
+}
+#form-taomoi-sach .row .textbox{
+    min-height: 30px;
+}
+#form-taomoi-sach .row .textarea{
+    min-height: 60px;
+}
+#form-taomoi-sach .row .label{
+    font-weight: bold;
+    color: #636363;
+    padding-bottom: 4px;
+}
+/*============================TREE=========================*/
+ul#tree-sach{
+    width:100%;
+    height:100%;
+    overflow-y: auto;
+}
+#tree-sach-container{
+    width:60%;
+    padding: 30px;
+}
+#tree-sach-container *{
+    /* margin:0; */
+    /* padding:0; */
+    /* -webkit-padding-start: 0px; */
+}
+#tree-sach-container ul{
+    list-style-type: none;
+    /* float: left; */
+    /* clear: both; */
+}
+.tree-node .node-header{
+width: 30px;
+height: 25px;
+float: left;
+}
+.tree-node .node-content{
+
+float: left;
+
+/* display: flex; */
+
+/* flex-direction: column; */
+
+/* width: 100%; */
+}
+li.tree-node{/* display: flex; */overflow: hidden;}
+
+li[name='node-dethi'].tree-node .display-primary {
+    font-weight: normal;
+}
+.tree-node .form-display{display: flex;border: 1px solid #c1c1c1;border-radius: 3px;padding: 3px 11px 3px 11px;}
+li[name='node-dethi'] .form-display{
+    border:none;
+}
+
+.form-display:hover .actions {
+    display: block;
+}
+.tree-node .form-edit{
+
+padding: 25px 35px;
+
+border: 1px solid #d6d6d6;
+
+border-radius: 3px;
+}
+.tree-node ul[name='child-container']{
+padding-top: 5px;
+/* margin-left: 13px; */
+}
+.tree-node .node-icon{
+
+padding-right: 10px;
+
+color: #585858;
+}
+.tree-node .actions{
+
+padding-left: 50px;
+
+display: none;
+}
+.tree-node .display-text{
+
+font-size: 11pt;
+}
+.tree-node .display-text .display-primary{
+
+font-weight: bold;
+}
+.tree-node .display-text .display-info{
+
+padding-left: 30px;
+
+color: #a7a7a7;
+}
+
+/*===================WIDGET====================*/
+.tree-node .form-input-sach-info .row{
+    margin-bottom: 5px;
+}
+.tree-node .form-input-sach-info .row .label{
+    font-size: 11pt;
+}

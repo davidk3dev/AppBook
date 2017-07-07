@@ -1,0 +1,462 @@
+﻿
+@{ ViewBag.Title = "View"; }   
+   
+@section Style {
+    <link href="~/Resource/switch-button/jquery.switchButton.css" rel="stylesheet" />
+    <link href="~/Resource/aehlke-tag-it/jquery.tagit.css" rel="stylesheet" />
+}
+@section Script {
+    <script src="~/Resource/angular/angular.min.js"></script>
+    <script src="~/Resource/angular/angular-animate-1.2.8.js"></script>
+    <script src="~/Resource/angular/angular-ui-router.js"></script>
+    <script src="~/Resource/ckeditor/ckeditor.js"></script>
+    <script src="~/Resource/dbhelper.js"></script>
+    <script src="~/Resource/pagecontent/danhsachbai/danhsachbai.js"></script>
+    <script src="~/Resource/pagecontent/danhsachbai/danhsachbai-angular.js"></script>
+    <script src="~/Resource/pagecontent/danhsachbai/danhsachbai-widget.js"></script>
+    <script src="~/Resource/switch-button/jquery.switchButton.js"></script>
+    <script src="~/Resource/aehlke-tag-it/tag-it.min.js"></script>
+}
+<div id="tailieuthamkhao-container" class="ui-layout-west">
+    <!--<iframe class="tailieuthamkhao-iframe" src="https://docs.google.com/document/d/1Oir80P3GepUpL_DolpHwz6wo50rJaxXXsoVFZEgWF1Q/pub?embedded=true"></iframe>-->
+</div>
+<div id="uiLeftSpliter" class="ui-layout-spliter"><div id="uiLeftSpliterHandle" class="ui-spliter-handle"></div></div>
+<div class="ui-layout-center" ng-app="myapp" ng-controller="mainController">
+    <div id="center-panel-container">
+        <div id="center-panel-header">
+            <div class="header-button" style="display: none" id="btnTroVeTrangDisplay" ng-click="trovetrangdisplay()">Trở về</div>
+            <div class="header-button" id="btnThemBaiMoi" ng-click="taobaimoi()">Thêm bài mới</div>
+        </div>
+        <div ui-view class="page {{pageClass}}"></div>
+        <div id="loadingScreen" style="display:none">
+            <div class="loader">Loading...</div>
+        </div>    
+        
+        @*<div class="switch-view-container">
+            <div id="bai-container">
+                <div id="loadingScreen" style="display:none">
+                    <div id="fountainG">
+                        <div id="fountainG_1" class="fountainG"></div>
+                        <div id="fountainG_2" class="fountainG"></div>
+                        <div id="fountainG_3" class="fountainG"></div>
+                        <div id="fountainG_4" class="fountainG"></div>
+                        <div id="fountainG_5" class="fountainG"></div>
+                        <div id="fountainG_6" class="fountainG"></div>
+                        <div id="fountainG_7" class="fountainG"></div>
+                        <div id="fountainG_8" class="fountainG"></div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+    </div>
+    <!--</div><div id="uiRightSpliter" class="ui-layout-spliter"><div id="uiRightSpliterHandle" class="ui-spliter-handle"></div></div>-->
+    <!--<div class="ui-layout-east">Phần comment</div>-->
+</div>
+<!--Loading element-->
+
+<!--PHAN TEMPLATE-->
+<template>
+    <div id="boxBaiEditor">
+        <div class="box-title bai">
+            <div class="box-title-icon">1</div>
+            <div class="box-title-text" >Bài số #1 </div>
+            <div class="box-title-actions">
+                <div class="box-title-action-dropdown-list outsite list-chuyende" style="display: none;">
+                    <select name="dropdownChuyenDe">
+                        <option value="EMPTY">Chọn chuyên đề</option>
+                        <option>Chuyên đề 1</option>
+                        <option>Chuyên đề 2</option>
+                        <option>Chuyên đề 3</option>
+                    </select>
+                </div>
+                <!--<div class="box-title-action-button button-outside btn-clone"><span></span>Copy</div>-->
+                <div class="box-title-action-button button-outside btn-luu" ><span></span>Lưu</div>
+                <div class="box-title-action-button button-outside btn-edit" style="display: none;"><a href="#editor/1234">Edit</a></div>
+                <div class="box-title-action-button btnMoreActions">
+                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                    <div class="more-actions-menu">
+                        <ul>
+                            <li class="item-delete">Delete</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="box-title-action-button btn-collapse" style="display:none"><i class="fa fa-angle-up" aria-hidden="true"></i></div>
+            </div>
+        </div>
+        <div class="box-content">
+            <div class="box-content-editing">
+                <div class="phannoidungbai">
+                    <div class="button-add-item themnoidungdebai"><span>+</span><span class="text"> Thêm nội dung đề bài</span></div>
+                    <div class="button-float-right btn-dich"><span><input name="btnDich" type="checkbox" /></span><span class="text"> dich</span></div>
+                </div>
+                <div class="phandanhsachcauhoi"></div>
+                <div class="button-add-item-container">
+                    <div class="button-add-item themcauhoi"><span>+</span><span class="text"> Single choice</span></div>
+                    <div class="button-add-item themcauhoi-danhdau"><span>+</span><span class="text"> Animation Đánh dấu</span></div>
+                    <div class="button-add-item themcauhoi-sapxep"><span>+</span><span class="text"> Animation Sắp xếp</span></div>
+                    <div class="button-add-item themcauhoi-dientext"><span>+</span><span class="text"> Điền text</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="boxBaiPreview">
+        <div class="bai-tieude">
+            <div class="tieude-text">Bai 1</div>
+            <div class="tieude-action"></div>
+        </div>
+        <div class="bai-noidung">
+            <div class="phan-de-bai"></div>
+            <div class="phan-cau-hoi"></div>
+        </div>
+    </div>
+    <div id="item_noidung_dapan_singlechoice">
+        <div class="noidung">
+            <div class="item-noidung-content"><textarea name="txtInput"></textarea></div>
+            <div class="item-noidung-actions"><span class="btnClose"><i class="fa fa-times" aria-hidden="true"></i></span></div>
+        </div>
+        <div class="dapandung">
+            <input name="ckbDapAnDung" type="checkbox" /><span>đáp án đúng</span>
+        </div>
+    </div>
+    <div id="item_noidung_dapan_vitri">
+        <div class="noidung">
+            <div class="item-noidung-textbox"><textarea name="txtInput"></textarea></div>
+            <div class="item-noidung-vitridung"><input name="txtViTriDung" type="text"></div>
+        </div>
+        <div class="action">
+            <div class="close-button"><span class="btnClose"><i class="fa fa-times" aria-hidden="true"></i></span></div>
+        </div>
+    </div>
+    <div id="item_noidung_dapan_dientext">
+        <div class="phuong-thuc-check-dap-an">
+            <select name="drpPhuongThucCheckDapAn">
+                <option value="GIATRI_TEXT">Giá trị text</option>
+                <option value="GIATRI_TOAN">Giá trị toán</option>
+            </select>
+        </div>
+        <div class="help-text">
+            <input name="txtHelpText" class="help-text" type="text" placeholder="Nhập help text (placeholder) ví dụ x=" />
+        </div>
+        <div class="gia-tri-dung-container">
+            <!--<input name="txtGiaTriDung" class="gia-tri-dung" type="text"  />-->
+            <div class="button-them-gia-tri-dung"><span>+ </span><span>Đáp án đúng</span></div>
+        </div>
+        <div class="seperator"></div>
+    </div>
+
+    <div id="item_noidung_chuoi_gia_tri_dung">
+        <div class="noidung"><input name="txtChuoiGiaTriDung" type="text"></div>
+        <div class="action"><span class="btnClose"><i class="fa fa-times" aria-hidden="true"></i></span></div>
+    </div>
+    
+    <div id="item_noidung_doanvan"><div contenteditable="true">Đoạn văn</div><span class="btnClose"><i class="fa fa-times" aria-hidden="true"></i></span></div>
+    <div id="item_noidung_hinhanh"><input type="file" placeholder="Chọn đường dẫn hình ảnh" /><span class="btnClose"><i class="fa fa-times" aria-hidden="true"></i></span></div>
+    <ul id="menu_ThemTemplateNoidung">
+        <li id="menu-item-tieude"><span class="icon"><i class="fa fa-text-width" aria-hidden="true"></i></span>Tiêu đề</li>
+        <li id="menu-item-doanvan"><span class="icon"><i class="fa fa-file-text-o" aria-hidden="true"></i></span>Đoạn văn</li>
+        <li id="menu-item-hinhanh"><span class="icon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>Hình ảnh</li>
+        <li id="menu-item-bainghe">Bài nghe</li>
+        <li id="menu-item-nguontailieu">Nguồn tài liệu</li>
+        <li id="menu-item-hoctuvung">Học từ vựng</li>
+    </ul>
+</template>
+
+<template id='template-box-bai'>
+    <div class="box-title bai">
+        <div class="box-title-icon">1</div>
+        <div class="box-title-text" contenteditable="true">Bài số #1</div>
+        <div class="box-title-actions">
+            <div class="box-title-action-dropdown-list outsite list-chuyende" style="display: none;">
+                <select name="dropdownChuyenDe">
+                    <option value="EMPTY">Chọn chuyên đề</option>
+                    <option>Chuyên đề 1</option>
+                    <option>Chuyên đề 2</option>
+                    <option>Chuyên đề 3</option>
+                </select>
+            </div>
+            <!--<div class="box-title-action-button button-outside btn-clone"><span></span>Copy</div>-->
+            <div class="box-title-action-button button-outside btn-luu"><span></span>Lưu</div>
+            <div class="box-title-action-button button-outside btn-edit" style="display: none;"><a href="#editor/1234">Edit</a></div>
+            <div class="box-title-action-button btnMoreActions">
+                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                <div class="more-actions-menu">
+                    <ul>
+                        <li class="item-delete">Delete</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box-title-action-button btn-collapse"><i class="fa fa-angle-up" aria-hidden="true"></i></div>
+        </div>
+    </div>
+    <div class="box-content">
+        <div class="box-content-editing">
+            <div class="phannoidungbai">
+                <div class="button-add-item themnoidungdebai"><span>+</span><span class="text"> Thêm nội dung đề bài</span></div>
+                <div class="button-float-right btn-dich"><span><input name="btnDich" type="checkbox" /></span><span class="text"> dich</span></div>
+            </div>
+            <div class="phandanhsachcauhoi"></div>
+            <div class="button-add-item-container">
+                <div class="button-add-item themcauhoi"><span>+</span><span class="text"> Single choice</span></div>
+                <div class="button-add-item themcauhoi-danhdau"><span>+</span><span class="text"> Animation Đánh dấu</span></div>
+                <div class="button-add-item themcauhoi-sapxep"><span>+</span><span class="text"> Animation Sắp xếp</span></div>
+                <div class="button-add-item themcauhoi-dientext"><span>+</span><span class="text"> Điền text</span></div>
+            </div>
+        </div>
+        <div class="box-content-saved"></div>
+    </div>
+    <!-- <div class="box-dialog">
+        <div id="dialog-confirm" title="Empty the recycle bin?">
+            <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>These items will be permanently deleted and cannot be recovered. Are you sure?</p>
+        </div>
+    </div> -->
+</template>
+
+<template id="item-noidungdebai">
+
+</template>
+<template id="item-noidung">
+    <div class="item-noidung dapan">
+        <div class="noidung">
+            <div class="item-noidung-content"><textarea name="txtInput"></textarea></div>
+            <div class="item-noidung-actions"><span class="btnClose"><i class="fa fa-times" aria-hidden="true"></i></span></div>
+        </div>
+        <div class="dapandung">
+            <input name="ckbDapAnDung" type="checkbox" /><span>đáp án đúng</span>
+        </div>
+    </div>
+    <div class="item-noidung dapan vitri">
+        <div class="noidung">
+            <div class="item-noidung-textbox"><textarea name="txtInput"></textarea></div>
+            <div class="item-noidung-vitridung"><input name="txtViTriDung" type="text"></div>
+        </div>
+        <div class="action">
+            <div class="close-button"><span class="btnClose"><i class="fa fa-times" aria-hidden="true"></i></span></div>
+        </div>
+    </div>
+    <div class="item-noidung dapan dientext">
+        <div class="phuong-thuc-check-dap-an">
+            <select name="drpPhuongThucCheckDapAn">
+                <option value="GIATRI_TEXT">Giá trị text</option>
+                <option value="GIATRI_TOAN">Giá trị toán</option>
+            </select>
+        </div>
+        <div class="help-text">
+            <input name="txtHelpText" class="help-text" type="text" placeholder="Nhập help text (placeholder) ví dụ x=" />
+        </div>
+        <div class="gia-tri-dung-container">
+            <!--<input name="txtGiaTriDung" class="gia-tri-dung" type="text"  />-->
+            <div class="button-them-gia-tri-dung"><span>+ </span><span>Đáp án đúng</span></div>
+        </div>
+        <div class="seperator"></div>
+    </div>
+
+    <div class="item-noidung chuoi-gia-tri-dung">
+        <div class="noidung"><input name="txtChuoiGiaTriDung" type="text"></div>
+        <div class="action"><span class="btnClose"><i class="fa fa-times" aria-hidden="true"></i></span></div>
+    </div>
+
+    <div class="item-noidung tieude"><div contenteditable="true">Tiêu đề</div><span class="btnClose"><i class="fa fa-times" aria-hidden="true"></i></span></div>
+    <div class="item-noidung doanvan"><div contenteditable="true">Đoạn văn</div><span class="btnClose"><i class="fa fa-times" aria-hidden="true"></i></span></div>
+    <div class="item-noidung hinhanh"><input type="file" placeholder="Chọn đường dẫn hình ảnh" /><span class="btnClose"><i class="fa fa-times" aria-hidden="true"></i></span></div>
+</template>
+<template id="item-noidung-menu">
+    <ul>
+        @*<li id="menu-item-tieude"><span class="icon"><i class="fa fa-text-width" aria-hidden="true"></i></span>Tiêu đề</li>*@
+        <li id="menu-item-doanvan"><span class="icon"><i class="fa fa-file-text-o" aria-hidden="true"></i></span>Đoạn văn</li>
+        <li id="menu-item-hinhanh"><span class="icon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>Hình ảnh</li>
+        <li id="menu-item-bainghe">Bài nghe</li>
+        <li id="menu-item-nguontailieu">Nguồn tài liệu</li>
+        <li id="menu-item-hoctuvung">Học từ vựng</li>
+    </ul>
+</template>
+<template id="box-cau-hoi">
+    <div class="box cauhoi">
+        <div class="box-title cauhoi">
+            <div class="box-title-text">Câu hỏi #1</div>
+            <div class="loai-cau-hoi"><span> - </span><span name="lblLoaiCauhoi">[Single choice]</span></div>
+            <div class="box-title-actions">
+                <div class="box-title-action-button checkbox-public"><input name="ckbPublic" type="checkbox" value="1"></div>
+                <div class="box-title-action-button btnMoreActions">
+                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                    <div class="more-actions-menu">
+                        <ul>
+                            <li class="item-delete">Delete</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="box-title-action-button btn-collapse-cauhoi"><i class="fa fa-angle-up" aria-hidden="true"></i></div>
+            </div>
+        </div>
+        <div class="box-content cauhoi">
+            <div class="box-content-section noidungcauhoi">
+                <div class="button-add-item themnoidungcauhoi"><span>+</span><span class="text"> Thêm nội dung câu hỏi</span></div>
+                <div class="button-float-right btn-dich"><span><input name="checkboxDich" type="checkbox" /> </span><span class="text"> dịch</span></div>
+            </div>
+            <div class="box-content-section phancautraloi">
+                <div class="cautraloi-container"></div>
+                <div class="button-add-item themcautraloi"><span>+</span><span class="text"> Thêm câu trả lời</span></div>
+                <div class="button-float-right btn-dich"><span><input name="checkboxAudio" type="checkbox" /> </span><span class="text"> audio</span></div>
+                <div class="button-float-right btn-dich"><span><input name="checkboxDich" type="checkbox" /> </span><span class="text"> dịch</span></div>
+            </div>
+            <div class="box-content-section phanchuthich">
+                <div class="button-add-item themnoidungchuthich"><span>+</span><span class="text"> Thêm nội dung chú thích</span></div>
+                <div class="button-float-right btn-dich"><span><input name="checkboxDich" type="checkbox" /> </span><span class="text"> dịch</span></div>
+            </div>
+            <div class="box-content-section phannoidunghighlight">
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div class="box cauhoi sapxep">
+        <div class="box-title cauhoi">
+            <div class="box-title-text">Câu hỏi #1</div>
+            <div class="loai-cau-hoi"><span> - </span><span name="lblLoaiCauhoi">[Sắp xếp]</span></div>
+
+            <div class="box-title-actions">
+                <div class="box-title-action-button checkbox-public"><input name="ckbPublic" type="checkbox" value="1"></div>
+                <div class="box-title-action-button btnMoreActions">
+                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                    <div class="more-actions-menu">
+                        <ul>
+                            <li class="item-delete">Delete</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="box-title-action-button btn-collapse-cauhoi"><i class="fa fa-angle-up" aria-hidden="true"></i></div>
+            </div>
+        </div>
+        <div class="box-content cauhoi">
+            <div class="box-content-section noidungcauhoi">
+                <div class="button-add-item themnoidungcauhoi"><span>+</span><span class="text"> Thêm nội dung câu hỏi</span></div>
+                <div class="button-float-right btn-dich"><span><input name="checkboxDich" type="checkbox" /> </span><span class="text"> dịch</span></div>
+            </div>
+            <div class="box-content-section phancautraloi">
+                <div class="cautraloi-container"></div>
+                <div class="button-add-item themcautraloi"><span>+</span><span class="text"> Thêm câu trả lời</span></div>
+                <div class="phuong-thuc-check-dap-an">
+                    <select name="drpPhuongThucCheckDapAn">
+                        <option value="EMPTY">Phương thức check đáp án</option>
+                        <option value="VI_TRI">Vị trí</option>
+                        <option value="GIATRI_TEXT">Giá trị text</option>
+                        <option value="GIATRI_TOAN">Giá trị toán</option>
+                    </select>
+                </div>
+                <div class="button-float-right btn-dich"><span><input type="checkbox" /> </span><span class="text"> audio</span></div>
+                <div class="button-float-right btn-dich"><span><input type="checkbox" /> </span><span class="text"> dịch</span></div>
+            </div>
+            <div class="box-content-section chuoigiatridung" style="display: none;">
+                <div class="chuoidung-container"></div>
+                <div class="button-add-item themchuoidung"><span>+</span><span class="text"> Thêm chuỗi đúng</span></div>
+            </div>
+            <div class="box-content-section phanchuthich">
+                <div class="button-add-item themnoidungchuthich"><span>+</span><span class="text"> Thêm nội dung chú thích</span></div>
+                <div class="button-float-right btn-dich"><span><input type="checkbox" /> </span><span class="text"> dịch</span></div>
+            </div>
+            <div class="box-content-section phannoidunghighlight">
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div class="box cauhoi danhdau">
+        <div class="box-title cauhoi">
+            <div class="box-title-text">Câu hỏi #1</div>
+            <div class="loai-cau-hoi"><span> - </span><span name="lblLoaiCauhoi">[Đánh dấu]</span></div>
+
+            <div class="box-title-actions">
+                <div class="box-title-action-button checkbox-public"><input name="ckbPublic" type="checkbox" value="1"></div>
+                <div class="box-title-action-button btnMoreActions">
+                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                    <div class="more-actions-menu">
+                        <ul>
+                            <li class="item-delete">Delete</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="box-title-action-button btn-collapse-cauhoi"><i class="fa fa-angle-up" aria-hidden="true"></i></div>
+            </div>
+        </div>
+        <div class="box-content cauhoi">
+            <div class="box-content-section noidungcauhoi">
+                <div class="button-add-item themnoidungcauhoi"><span>+</span><span class="text"> Thêm nội dung câu hỏi</span></div>
+                <div class="button-float-right btn-dich"><span><input name="checkboxDich" type="checkbox" /> </span><span class="text"> dịch</span></div>
+            </div>
+            <div class="box-content-section phancautraloi">
+                <div class="cautraloi-container"></div>
+                <div class="button-add-item themcautraloi"><span>+</span><span class="text"> Thêm câu trả lời</span></div>
+                <div class="phuong-thuc-check-dap-an">
+                    <select name="drpPhuongThucCheckDapAn">
+                        <option value="EMPTY">Phương thức check đáp án</option>
+                        <option value="VI_TRI">Vị trí</option>
+                        <option value="GIATRI_TEXT">Giá trị text</option>
+                        <option value="GIATRI_TOAN">Giá trị toán</option>
+                    </select>
+                </div>
+                <div class="button-float-right btn-dich"><span><input type="checkbox" /> </span><span class="text"> audio</span></div>
+                <div class="button-float-right btn-dich"><span><input type="checkbox" /> </span><span class="text"> dịch</span></div>
+            </div>
+            <div class="box-content-section chuoigiatridung" style="display: none;">
+                <div class="chuoidung-container"></div>
+                <div class="button-add-item themchuoidung"><span>+</span><span class="text"> Thêm chuỗi đúng</span></div>
+            </div>
+            <div class="box-content-section phanchuthich">
+                <div class="button-add-item themnoidungchuthich"><span>+</span><span class="text"> Thêm nội dung chú thích</span></div>
+                <div class="button-float-right btn-dich"><span><input type="checkbox" /> </span><span class="text"> dịch</span></div>
+            </div>
+            <div class="box-content-section phannoidunghighlight">
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div class="box cauhoi dientext">
+        <div class="box-title cauhoi">
+            <div class="box-title-text">Câu hỏi #1</div>
+            <div class="loai-cau-hoi"><span> - </span><span name="lblLoaiCauhoi">[Điền text]</span></div>
+
+            <div class="box-title-actions">
+                <div class="box-title-action-button checkbox-public"><input name="ckbPublic" type="checkbox" value="1"></div>
+                <div class="box-title-action-button btnMoreActions">
+                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                    <div class="more-actions-menu">
+                        <ul>
+                            <li class="item-delete">Delete</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="box-title-action-button btn-collapse-cauhoi"><i class="fa fa-angle-up" aria-hidden="true"></i></div>
+            </div>
+        </div>
+        <div class="box-content cauhoi">
+            <div class="box-content-section noidungcauhoi">
+                <div class="button-add-item themnoidungcauhoi"><span>+</span><span class="text"> Thêm nội dung câu hỏi</span></div>
+                <div class="button-float-right btn-dich"><span><input type="checkbox" name="checkboxDich" /> </span><span class="text"> dịch</span></div>
+            </div>
+            <div class="box-content-section phancautraloi">
+                <div class="cautraloi-container"></div>
+                <div class="button-add-item themcautraloi"><span>+</span><span class="text"> Thêm textbox</span></div>
+            </div>
+            <div class="box-content-section phanchuthich">
+                <div class="button-add-item themnoidungchuthich"><span>+</span><span class="text"> Thêm nội dung chú thích</span></div>
+                <div class="button-float-right btn-dich"><span><input type="checkbox" name="checkboxDich" /> </span><span class="text"> dịch</span></div>
+            </div>
+            <div class="box-content-section phannoidunghighlight">
+                <div></div>
+            </div>
+        </div>
+    </div>
+</template>
+<template id="dialog">
+    <div class="dialog-warning">
+        <div class="dialog-icon"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
+        <div class="dialog-content"></div>
+    </div>
+    <div class="dialog-error">
+        <div class="dialog-icon"><i class="fa fa-times-circle" aria-hidden="true"></i></div>
+        <div class="dialog-content"></div>
+    </div>
+    <div class="dialog-info">
+        <div class="dialog-icon"><i class="fa fa-info-circle" aria-hidden="true"></i></div>
+        <div class="dialog-content"></div>
+    </div>
+</template>
+

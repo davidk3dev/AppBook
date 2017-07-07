@@ -1,0 +1,31 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+div#test1-content {
+    display: flex;
+}
+
+div#test1-wraper {
+}
+
+#old-parent{
+    height:200px;
+    background-color: rebeccapurple;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    margin-right: 20px;
+}
+#newparent{height: 200px;background-color: green;flex-grow: 1;}
+#element-to-move{
+
+height: 100px;
+
+width: 200px;
+
+background-color: yellow;
+}

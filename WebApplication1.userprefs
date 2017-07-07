@@ -1,0 +1,10 @@
+﻿<Properties StartupConfiguration="{638B0AAA-408E-4446-9932-1433B3CEDB41}|">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.WebApplication1 PreferredExecutionTarget="ChromiumHTM.R55G5HDTG2WYDFMEQZ4RHPPTLM" />
+</Properties>

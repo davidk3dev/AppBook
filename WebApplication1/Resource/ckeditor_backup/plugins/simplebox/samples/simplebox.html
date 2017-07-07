@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2014-2016, CKSource - Frederico Knabben. All rights reserved.
+Licensed under the terms of the MIT License (see LICENSE.md).
+-->
+<html>
+<head>
+	<title>Tutorial &mdash; Simple Box Widget, Part 1</title>
+	<meta charset="utf-8">
+	<script src="../../../ckeditor.js"></script>
+	<link href="../../../samples/sample.css" rel="stylesheet">
+</head>
+<body>
+	<h1 class="samples">
+		Tutorial &mdash; Simple Box Widget, part 1
+	</h1>
+
+	<textarea id="editor1" cols="10" rows="10">
+	
+	</textarea>
+
+	<script>
+
+CKEDITOR.replace( 'editor1', {
+	// Load the simplebox plugin.
+	extraPlugins: 'simplebox',
+
+	// Besides editor's main stylesheet load also simplebox styles.
+	// In the usual case they can be added to the main stylesheet.
+	contentsCss: [
+		'../../../contents.css',
+		'contents.css'
+	],
+
+	// The following options are set to make the sample more clear for demonstration purposes.
+
+	// Set height to make more content visible.
+	height: 500,
+	// Rearrange toolbar groups and remove unnecessary plugins.
+	toolbarGroups: [
+		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+		{ name: 'links' },
+		{ name: 'insert' },
+		{ name: 'document',	   groups: [ 'mode' ] },
+		'/',
+		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+		{ name: 'paragraph',   groups: [ 'list', 'indent' ] },
+		{ name: 'styles' },
+		{ name: 'about' }
+	],
+	removePlugins: 'font,iframe,pagebreak,flash,stylescombo,print,preview,save,smiley,pastetext,pastefromword'
+} );
+
+	</script>
+
+</body>
+</html>

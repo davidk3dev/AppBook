@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html, body{
+    width: 100%;
+    height: 100%;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
+}
+div#page-wraper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+div#page-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #dedede;
+    overflow: hidden;
+}
+div#page-header {
+    height: 50px;
+    box-shadow: 1px 1px 1px 1px #a5a5a5;
+    /* margin-bottom: 11px; */
+    background-color: #5f83c5;
+    border-bottom: 1px solid #afafaf;
+    /* color: white; */
+    margin-bottom: 5px;
+    width: 100%;
+}
+div#page-content {
+    flex-grow: 1;
+    padding: 41px 160px 40px 160px;
+    display: flex;
+}
+
+div#page-content.page.content {
+    flex-direction: column;
+}
+#menu{
+    width: 100%;
+    height: 100%;
+}
+#primary_nav_wrap{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: flex-end;
+}
+#header-menu li:hover{
+    border-bottom: 4px solid white;
+}
+
+#header-menu li.current {
+    border-bottom: 4px solid white;
+}
+#appLogo{
+
+color: white;
+
+align-items: flex-end;
+
+padding: 0px 80px 13px 40px;
+} 
+
+
+
+
+

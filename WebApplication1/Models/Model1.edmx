@@ -1,0 +1,1501 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="appbookModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_account">
+          <Key>
+            <PropertyRef Name="id_account" />
+          </Key>
+          <Property Name="id_account" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="full_name" Type="varchar" MaxLength="100" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="ngay_tao" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_bai">
+          <Key>
+            <PropertyRef Name="id_bai" />
+          </Key>
+          <Property Name="id_bai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_chuyende" Type="int" Nullable="false" />
+          <Property Name="ngay_tao" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="xuat_ban" Type="bool" Nullable="false" />
+          <Property Name="thu_tu" Type="int" Nullable="false" />
+          <Property Name="bai_mau" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_bai_templatenoidung">
+          <Key>
+            <PropertyRef Name="id_bai" />
+            <PropertyRef Name="id_templatenoidung" />
+          </Key>
+          <Property Name="id_bai" Type="int" Nullable="false" />
+          <Property Name="id_templatenoidung" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_baimau">
+          <Key>
+            <PropertyRef Name="id_baimau" />
+          </Key>
+          <Property Name="id_baimau" Type="int" Nullable="false" />
+          <Property Name="id_bai" Type="int" Nullable="false" />
+          <Property Name="id_account" Type="int" Nullable="false" />
+          <Property Name="ten_baimau" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_cauhoi">
+          <Key>
+            <PropertyRef Name="id_cauhoi" />
+          </Key>
+          <Property Name="id_cauhoi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_bai" Type="int" Nullable="false" />
+          <Property Name="xuat_ban" Type="bool" Nullable="false" />
+          <Property Name="loai_cau_hoi" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="phuong_thuc_check_dap_an" Type="varchar" MaxLength="45" />
+          <Property Name="ngay_tao" Type="datetime" Precision="0" />
+          <Property Name="gia_tri_dung" Type="varchar" MaxLength="200" />
+          <Property Name="thu_tu" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_cauhoi_templatenoidung">
+          <Key>
+            <PropertyRef Name="id_cauhoi" />
+            <PropertyRef Name="id_templatenoidung" />
+          </Key>
+          <Property Name="id_cauhoi" Type="int" Nullable="false" />
+          <Property Name="id_templatenoidung" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_chuyende">
+          <Key>
+            <PropertyRef Name="id_chuyende" />
+          </Key>
+          <Property Name="id_chuyende" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_thuvien" Type="int" Nullable="false" />
+          <Property Name="ten_chuyende" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="ngay_tao" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_comment">
+          <Key>
+            <PropertyRef Name="id_comment" />
+          </Key>
+          <Property Name="id_comment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_account" Type="int" Nullable="false" />
+          <Property Name="id_cauhoi" Type="int" Nullable="false" />
+          <Property Name="ngay_tao" Type="datetime" Precision="0" />
+          <Property Name="noi_dung" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="reply_for" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_dapan">
+          <Key>
+            <PropertyRef Name="id_dapan" />
+          </Key>
+          <Property Name="id_dapan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cauhoi" Type="int" Nullable="false" />
+          <Property Name="loai_dap_an" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="tb_dapan_danhdau">
+          <Key>
+            <PropertyRef Name="id_dapan" />
+          </Key>
+          <Property Name="id_dapan" Type="int" Nullable="false" />
+          <Property Name="vitri_dung" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_dapan_dientext">
+          <Key>
+            <PropertyRef Name="id_dapan" />
+          </Key>
+          <Property Name="id_dapan" Type="int" Nullable="false" />
+          <Property Name="giatri_dung" Type="varchar" MaxLength="500" />
+          <Property Name="help_text" Type="varchar" MaxLength="150" />
+          <Property Name="phuongthuc_check_dapan" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_dapan_sapxep">
+          <Key>
+            <PropertyRef Name="id_dapan" />
+          </Key>
+          <Property Name="id_dapan" Type="int" Nullable="false" />
+          <Property Name="giatri" Type="varchar" MaxLength="100" />
+          <Property Name="noidung_hienthi" Type="varchar" MaxLength="100" />
+          <Property Name="vitri_dung" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_dapan_singlechoice">
+          <Key>
+            <PropertyRef Name="id_dapan" />
+          </Key>
+          <Property Name="id_dapan" Type="int" Nullable="false" />
+          <Property Name="noidung" Type="varchar" MaxLength="300" />
+          <Property Name="dapan_dung" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_templatenoidung">
+          <Key>
+            <PropertyRef Name="id_templatenoidung" />
+          </Key>
+          <Property Name="id_templatenoidung" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="loai_template" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_templatenoidung_bainghe">
+          <Key>
+            <PropertyRef Name="id_templatenoidung" />
+          </Key>
+          <Property Name="id_templatenoidung" Type="int" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_templatenoidung_hinhanh">
+          <Key>
+            <PropertyRef Name="id_templatenoidung" />
+          </Key>
+          <Property Name="id_templatenoidung" Type="int" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_templatenoidung_text">
+          <Key>
+            <PropertyRef Name="id_templatenoidung" />
+          </Key>
+          <Property Name="id_templatenoidung" Type="int" Nullable="false" />
+          <Property Name="noidung" Type="varchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="tb_templatenoidunghinhanh_format">
+          <Key>
+            <PropertyRef Name="id_format" />
+          </Key>
+          <Property Name="id_format" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_templatenoidunghinhanh" Type="int" Nullable="false" />
+          <Property Name="width" Type="varchar" MaxLength="45" />
+          <Property Name="height" Type="varchar" MaxLength="45" />
+          <Property Name="alignment" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="tb_templatenoidunghinhanh_format_mapping">
+          <Key>
+            <PropertyRef Name="id_templatenoidung" />
+            <PropertyRef Name="id_format" />
+          </Key>
+          <Property Name="id_templatenoidung" Type="int" Nullable="false" />
+          <Property Name="id_format" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_templatenoidungtext_format">
+          <Key>
+            <PropertyRef Name="id_format" />
+          </Key>
+          <Property Name="id_format" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_templatenoidungtext" Type="int" Nullable="false" />
+          <Property Name="ckeditor_text_format" Type="varchar" MaxLength="1000" />
+          <Property Name="template_width" Type="varchar" MaxLength="45" />
+          <Property Name="template_heigth" Type="varchar" MaxLength="45" />
+          <Property Name="template_alignment" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="tb_templatenoidungtext_format_mapping">
+          <Key>
+            <PropertyRef Name="id_templatenoidung" />
+            <PropertyRef Name="id_templatenoidung_text" />
+          </Key>
+          <Property Name="id_templatenoidung" Type="int" Nullable="false" />
+          <Property Name="id_templatenoidung_text" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_thuvien">
+          <Key>
+            <PropertyRef Name="id_thuvien" />
+          </Key>
+          <Property Name="id_thuvien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_thuvien" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_user">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_type" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_Account_User">
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_account" Type="Self.tb_account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_user">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="tb_account">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Bai_Chuyende">
+          <End Role="tb_chuyende" Type="Self.tb_chuyende" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_bai" Type="Self.tb_bai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_chuyende">
+              <PropertyRef Name="id_chuyende" />
+            </Principal>
+            <Dependent Role="tb_bai">
+              <PropertyRef Name="id_chuyende" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_baimau_account">
+          <End Role="tb_account" Type="Self.tb_account" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_baimau" Type="Self.tb_baimau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_account">
+              <PropertyRef Name="id_account" />
+            </Principal>
+            <Dependent Role="tb_baimau">
+              <PropertyRef Name="id_account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_baimau_bai">
+          <End Role="tb_bai" Type="Self.tb_bai" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_baimau" Type="Self.tb_baimau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_bai">
+              <PropertyRef Name="id_bai" />
+            </Principal>
+            <Dependent Role="tb_baimau">
+              <PropertyRef Name="id_bai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bainghe_templatenoidung">
+          <End Role="tb_templatenoidung" Type="Self.tb_templatenoidung" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_templatenoidung_bainghe" Type="Self.tb_templatenoidung_bainghe" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_templatenoidung">
+              <PropertyRef Name="id_templatenoidung" />
+            </Principal>
+            <Dependent Role="tb_templatenoidung_bainghe">
+              <PropertyRef Name="id_templatenoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CauHoi_TemplateNoidung">
+          <End Role="tb_cauhoi" Type="Self.tb_cauhoi" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_cauhoi_templatenoidung" Type="Self.tb_cauhoi_templatenoidung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cauhoi">
+              <PropertyRef Name="id_cauhoi" />
+            </Principal>
+            <Dependent Role="tb_cauhoi_templatenoidung">
+              <PropertyRef Name="id_cauhoi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Chuyende_Thuvien">
+          <End Role="tb_thuvien" Type="Self.tb_thuvien" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_chuyende" Type="Self.tb_chuyende" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_thuvien">
+              <PropertyRef Name="id_thuvien" />
+            </Principal>
+            <Dependent Role="tb_chuyende">
+              <PropertyRef Name="id_thuvien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_comment_account">
+          <End Role="tb_account" Type="Self.tb_account" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_comment" Type="Self.tb_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_account">
+              <PropertyRef Name="id_account" />
+            </Principal>
+            <Dependent Role="tb_comment">
+              <PropertyRef Name="id_account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_comment_cauhoi">
+          <End Role="tb_cauhoi" Type="Self.tb_cauhoi" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_comment" Type="Self.tb_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cauhoi">
+              <PropertyRef Name="id_cauhoi" />
+            </Principal>
+            <Dependent Role="tb_comment">
+              <PropertyRef Name="id_cauhoi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DapAn_CauHoi">
+          <End Role="tb_cauhoi" Type="Self.tb_cauhoi" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_dapan" Type="Self.tb_dapan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cauhoi">
+              <PropertyRef Name="id_cauhoi" />
+            </Principal>
+            <Dependent Role="tb_dapan">
+              <PropertyRef Name="id_cauhoi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dapandanhdau_dapan">
+          <End Role="tb_dapan" Type="Self.tb_dapan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_dapan_danhdau" Type="Self.tb_dapan_danhdau" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_dapan">
+              <PropertyRef Name="id_dapan" />
+            </Principal>
+            <Dependent Role="tb_dapan_danhdau">
+              <PropertyRef Name="id_dapan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dapandientext_dapan">
+          <End Role="tb_dapan" Type="Self.tb_dapan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_dapan_dientext" Type="Self.tb_dapan_dientext" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_dapan">
+              <PropertyRef Name="id_dapan" />
+            </Principal>
+            <Dependent Role="tb_dapan_dientext">
+              <PropertyRef Name="id_dapan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dapansapxep_dapan">
+          <End Role="tb_dapan" Type="Self.tb_dapan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_dapan_sapxep" Type="Self.tb_dapan_sapxep" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_dapan">
+              <PropertyRef Name="id_dapan" />
+            </Principal>
+            <Dependent Role="tb_dapan_sapxep">
+              <PropertyRef Name="id_dapan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DapAnSingleChoice_DapAn">
+          <End Role="tb_dapan" Type="Self.tb_dapan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_dapan_singlechoice" Type="Self.tb_dapan_singlechoice" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_dapan">
+              <PropertyRef Name="id_dapan" />
+            </Principal>
+            <Dependent Role="tb_dapan_singlechoice">
+              <PropertyRef Name="id_dapan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_hinhanh_tempatenoidung">
+          <End Role="tb_templatenoidung" Type="Self.tb_templatenoidung" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_templatenoidung_hinhanh" Type="Self.tb_templatenoidung_hinhanh" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_templatenoidung">
+              <PropertyRef Name="id_templatenoidung" />
+            </Principal>
+            <Dependent Role="tb_templatenoidung_hinhanh">
+              <PropertyRef Name="id_templatenoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_NDText_TemplateND">
+          <End Role="tb_templatenoidung" Type="Self.tb_templatenoidung" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_templatenoidung_text" Type="Self.tb_templatenoidung_text" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_templatenoidung">
+              <PropertyRef Name="id_templatenoidung" />
+            </Principal>
+            <Dependent Role="tb_templatenoidung_text">
+              <PropertyRef Name="id_templatenoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_selfref_replyfor">
+          <End Role="tb_comment" Type="Self.tb_comment" Multiplicity="0..1" />
+          <End Role="tb_comment1" Type="Self.tb_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_comment">
+              <PropertyRef Name="id_comment" />
+            </Principal>
+            <Dependent Role="tb_comment1">
+              <PropertyRef Name="reply_for" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_cauhoi_tb_bai1">
+          <End Role="tb_bai" Type="Self.tb_bai" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_cauhoi" Type="Self.tb_cauhoi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_bai">
+              <PropertyRef Name="id_bai" />
+            </Principal>
+            <Dependent Role="tb_cauhoi">
+              <PropertyRef Name="id_bai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_TemplateNoidung_CauHoi">
+          <End Role="tb_templatenoidung" Type="Self.tb_templatenoidung" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_cauhoi_templatenoidung" Type="Self.tb_cauhoi_templatenoidung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_templatenoidung">
+              <PropertyRef Name="id_templatenoidung" />
+            </Principal>
+            <Dependent Role="tb_cauhoi_templatenoidung">
+              <PropertyRef Name="id_templatenoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_TempNDBai_Bai">
+          <End Role="tb_bai" Type="Self.tb_bai" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_bai_templatenoidung" Type="Self.tb_bai_templatenoidung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_bai">
+              <PropertyRef Name="id_bai" />
+            </Principal>
+            <Dependent Role="tb_bai_templatenoidung">
+              <PropertyRef Name="id_bai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_TempNDBai_TemplateNoidung">
+          <End Role="tb_templatenoidung" Type="Self.tb_templatenoidung" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_bai_templatenoidung" Type="Self.tb_bai_templatenoidung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_templatenoidung">
+              <PropertyRef Name="id_templatenoidung" />
+            </Principal>
+            <Dependent Role="tb_bai_templatenoidung">
+              <PropertyRef Name="id_templatenoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="format_template">
+          <End Role="tb_templatenoidunghinhanh_format" Type="Self.tb_templatenoidunghinhanh_format" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_templatenoidunghinhanh_format_mapping" Type="Self.tb_templatenoidunghinhanh_format_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_templatenoidunghinhanh_format">
+              <PropertyRef Name="id_format" />
+            </Principal>
+            <Dependent Role="tb_templatenoidunghinhanh_format_mapping">
+              <PropertyRef Name="id_format" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="format_templatetext">
+          <End Role="tb_templatenoidung_text" Type="Self.tb_templatenoidung_text" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_templatenoidungtext_format_mapping" Type="Self.tb_templatenoidungtext_format_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_templatenoidung_text">
+              <PropertyRef Name="id_templatenoidung" />
+            </Principal>
+            <Dependent Role="tb_templatenoidungtext_format_mapping">
+              <PropertyRef Name="id_templatenoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="template_format">
+          <End Role="tb_templatenoidung_hinhanh" Type="Self.tb_templatenoidung_hinhanh" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_templatenoidunghinhanh_format_mapping" Type="Self.tb_templatenoidunghinhanh_format_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_templatenoidung_hinhanh">
+              <PropertyRef Name="id_templatenoidung" />
+            </Principal>
+            <Dependent Role="tb_templatenoidunghinhanh_format_mapping">
+              <PropertyRef Name="id_templatenoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="templatetext_format">
+          <End Role="tb_templatenoidungtext_format" Type="Self.tb_templatenoidungtext_format" Multiplicity="1" />
+          <End Role="tb_templatenoidungtext_format_mapping" Type="Self.tb_templatenoidungtext_format_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_templatenoidungtext_format">
+              <PropertyRef Name="id_format" />
+            </Principal>
+            <Dependent Role="tb_templatenoidungtext_format_mapping">
+              <PropertyRef Name="id_templatenoidung_text" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="appbookModelStoreContainer">
+          <EntitySet Name="tb_account" EntityType="Self.tb_account" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_bai" EntityType="Self.tb_bai" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_bai_templatenoidung" EntityType="Self.tb_bai_templatenoidung" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_baimau" EntityType="Self.tb_baimau" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_cauhoi" EntityType="Self.tb_cauhoi" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_cauhoi_templatenoidung" EntityType="Self.tb_cauhoi_templatenoidung" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_chuyende" EntityType="Self.tb_chuyende" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_comment" EntityType="Self.tb_comment" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_dapan" EntityType="Self.tb_dapan" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_dapan_danhdau" EntityType="Self.tb_dapan_danhdau" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_dapan_dientext" EntityType="Self.tb_dapan_dientext" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_dapan_sapxep" EntityType="Self.tb_dapan_sapxep" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_dapan_singlechoice" EntityType="Self.tb_dapan_singlechoice" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_templatenoidung" EntityType="Self.tb_templatenoidung" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_templatenoidung_bainghe" EntityType="Self.tb_templatenoidung_bainghe" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_templatenoidung_hinhanh" EntityType="Self.tb_templatenoidung_hinhanh" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_templatenoidung_text" EntityType="Self.tb_templatenoidung_text" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_templatenoidunghinhanh_format" EntityType="Self.tb_templatenoidunghinhanh_format" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_templatenoidunghinhanh_format_mapping" EntityType="Self.tb_templatenoidunghinhanh_format_mapping" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_templatenoidungtext_format" EntityType="Self.tb_templatenoidungtext_format" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_templatenoidungtext_format_mapping" EntityType="Self.tb_templatenoidungtext_format_mapping" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_thuvien" EntityType="Self.tb_thuvien" Schema="appbook" store:Type="Tables" />
+          <EntitySet Name="tb_user" EntityType="Self.tb_user" Schema="appbook" store:Type="Tables" />
+          <AssociationSet Name="fk_Account_User" Association="Self.fk_Account_User">
+            <End Role="tb_user" EntitySet="tb_user" />
+            <End Role="tb_account" EntitySet="tb_account" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Bai_Chuyende" Association="Self.fk_Bai_Chuyende">
+            <End Role="tb_chuyende" EntitySet="tb_chuyende" />
+            <End Role="tb_bai" EntitySet="tb_bai" />
+          </AssociationSet>
+          <AssociationSet Name="fk_baimau_account" Association="Self.fk_baimau_account">
+            <End Role="tb_account" EntitySet="tb_account" />
+            <End Role="tb_baimau" EntitySet="tb_baimau" />
+          </AssociationSet>
+          <AssociationSet Name="fk_baimau_bai" Association="Self.fk_baimau_bai">
+            <End Role="tb_bai" EntitySet="tb_bai" />
+            <End Role="tb_baimau" EntitySet="tb_baimau" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bainghe_templatenoidung" Association="Self.fk_bainghe_templatenoidung">
+            <End Role="tb_templatenoidung" EntitySet="tb_templatenoidung" />
+            <End Role="tb_templatenoidung_bainghe" EntitySet="tb_templatenoidung_bainghe" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CauHoi_TemplateNoidung" Association="Self.fk_CauHoi_TemplateNoidung">
+            <End Role="tb_cauhoi" EntitySet="tb_cauhoi" />
+            <End Role="tb_cauhoi_templatenoidung" EntitySet="tb_cauhoi_templatenoidung" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Chuyende_Thuvien" Association="Self.fk_Chuyende_Thuvien">
+            <End Role="tb_thuvien" EntitySet="tb_thuvien" />
+            <End Role="tb_chuyende" EntitySet="tb_chuyende" />
+          </AssociationSet>
+          <AssociationSet Name="fk_comment_account" Association="Self.fk_comment_account">
+            <End Role="tb_account" EntitySet="tb_account" />
+            <End Role="tb_comment" EntitySet="tb_comment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_comment_cauhoi" Association="Self.fk_comment_cauhoi">
+            <End Role="tb_cauhoi" EntitySet="tb_cauhoi" />
+            <End Role="tb_comment" EntitySet="tb_comment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DapAn_CauHoi" Association="Self.fk_DapAn_CauHoi">
+            <End Role="tb_cauhoi" EntitySet="tb_cauhoi" />
+            <End Role="tb_dapan" EntitySet="tb_dapan" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dapandanhdau_dapan" Association="Self.fk_dapandanhdau_dapan">
+            <End Role="tb_dapan" EntitySet="tb_dapan" />
+            <End Role="tb_dapan_danhdau" EntitySet="tb_dapan_danhdau" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dapandientext_dapan" Association="Self.fk_dapandientext_dapan">
+            <End Role="tb_dapan" EntitySet="tb_dapan" />
+            <End Role="tb_dapan_dientext" EntitySet="tb_dapan_dientext" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dapansapxep_dapan" Association="Self.fk_dapansapxep_dapan">
+            <End Role="tb_dapan" EntitySet="tb_dapan" />
+            <End Role="tb_dapan_sapxep" EntitySet="tb_dapan_sapxep" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DapAnSingleChoice_DapAn" Association="Self.fk_DapAnSingleChoice_DapAn">
+            <End Role="tb_dapan" EntitySet="tb_dapan" />
+            <End Role="tb_dapan_singlechoice" EntitySet="tb_dapan_singlechoice" />
+          </AssociationSet>
+          <AssociationSet Name="fk_hinhanh_tempatenoidung" Association="Self.fk_hinhanh_tempatenoidung">
+            <End Role="tb_templatenoidung" EntitySet="tb_templatenoidung" />
+            <End Role="tb_templatenoidung_hinhanh" EntitySet="tb_templatenoidung_hinhanh" />
+          </AssociationSet>
+          <AssociationSet Name="fk_NDText_TemplateND" Association="Self.fk_NDText_TemplateND">
+            <End Role="tb_templatenoidung" EntitySet="tb_templatenoidung" />
+            <End Role="tb_templatenoidung_text" EntitySet="tb_templatenoidung_text" />
+          </AssociationSet>
+          <AssociationSet Name="fk_selfref_replyfor" Association="Self.fk_selfref_replyfor">
+            <End Role="tb_comment" EntitySet="tb_comment" />
+            <End Role="tb_comment1" EntitySet="tb_comment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_cauhoi_tb_bai1" Association="Self.fk_tb_cauhoi_tb_bai1">
+            <End Role="tb_bai" EntitySet="tb_bai" />
+            <End Role="tb_cauhoi" EntitySet="tb_cauhoi" />
+          </AssociationSet>
+          <AssociationSet Name="fk_TemplateNoidung_CauHoi" Association="Self.fk_TemplateNoidung_CauHoi">
+            <End Role="tb_templatenoidung" EntitySet="tb_templatenoidung" />
+            <End Role="tb_cauhoi_templatenoidung" EntitySet="tb_cauhoi_templatenoidung" />
+          </AssociationSet>
+          <AssociationSet Name="fk_TempNDBai_Bai" Association="Self.fk_TempNDBai_Bai">
+            <End Role="tb_bai" EntitySet="tb_bai" />
+            <End Role="tb_bai_templatenoidung" EntitySet="tb_bai_templatenoidung" />
+          </AssociationSet>
+          <AssociationSet Name="fk_TempNDBai_TemplateNoidung" Association="Self.fk_TempNDBai_TemplateNoidung">
+            <End Role="tb_templatenoidung" EntitySet="tb_templatenoidung" />
+            <End Role="tb_bai_templatenoidung" EntitySet="tb_bai_templatenoidung" />
+          </AssociationSet>
+          <AssociationSet Name="format_template" Association="Self.format_template">
+            <End Role="tb_templatenoidunghinhanh_format" EntitySet="tb_templatenoidunghinhanh_format" />
+            <End Role="tb_templatenoidunghinhanh_format_mapping" EntitySet="tb_templatenoidunghinhanh_format_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="format_templatetext" Association="Self.format_templatetext">
+            <End Role="tb_templatenoidung_text" EntitySet="tb_templatenoidung_text" />
+            <End Role="tb_templatenoidungtext_format_mapping" EntitySet="tb_templatenoidungtext_format_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="template_format" Association="Self.template_format">
+            <End Role="tb_templatenoidung_hinhanh" EntitySet="tb_templatenoidung_hinhanh" />
+            <End Role="tb_templatenoidunghinhanh_format_mapping" EntitySet="tb_templatenoidunghinhanh_format_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="templatetext_format" Association="Self.templatetext_format">
+            <End Role="tb_templatenoidungtext_format" EntitySet="tb_templatenoidungtext_format" />
+            <End Role="tb_templatenoidungtext_format_mapping" EntitySet="tb_templatenoidungtext_format_mapping" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="appbookModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tb_account">
+          <Key>
+            <PropertyRef Name="id_account" />
+          </Key>
+          <Property Name="id_account" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="full_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ngay_tao" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="tb_user" Relationship="Self.fk_Account_User" FromRole="tb_account" ToRole="tb_user" />
+          <NavigationProperty Name="tb_baimau" Relationship="Self.fk_baimau_account" FromRole="tb_account" ToRole="tb_baimau" />
+          <NavigationProperty Name="tb_comment" Relationship="Self.fk_comment_account" FromRole="tb_account" ToRole="tb_comment" />
+        </EntityType>
+        <EntityType Name="tb_bai">
+          <Key>
+            <PropertyRef Name="id_bai" />
+          </Key>
+          <Property Name="id_bai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_chuyende" Type="Int32" Nullable="false" />
+          <Property Name="ngay_tao" Type="DateTime" Nullable="false" />
+          <Property Name="xuat_ban" Type="Boolean" Nullable="false" />
+          <Property Name="thu_tu" Type="Int32" Nullable="false" />
+          <Property Name="bai_mau" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tb_chuyende" Relationship="Self.fk_Bai_Chuyende" FromRole="tb_bai" ToRole="tb_chuyende" />
+          <NavigationProperty Name="tb_baimau" Relationship="Self.fk_baimau_bai" FromRole="tb_bai" ToRole="tb_baimau" />
+          <NavigationProperty Name="tb_cauhoi" Relationship="Self.fk_tb_cauhoi_tb_bai1" FromRole="tb_bai" ToRole="tb_cauhoi" />
+          <NavigationProperty Name="tb_templatenoidung" Relationship="Self.tb_bai_templatenoidung" FromRole="tb_bai" ToRole="tb_templatenoidung" />
+        </EntityType>
+        <EntityType Name="tb_baimau">
+          <Key>
+            <PropertyRef Name="id_baimau" />
+          </Key>
+          <Property Name="id_baimau" Type="Int32" Nullable="false" />
+          <Property Name="id_bai" Type="Int32" Nullable="false" />
+          <Property Name="id_account" Type="Int32" Nullable="false" />
+          <Property Name="ten_baimau" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_account" Relationship="Self.fk_baimau_account" FromRole="tb_baimau" ToRole="tb_account" />
+          <NavigationProperty Name="tb_bai" Relationship="Self.fk_baimau_bai" FromRole="tb_baimau" ToRole="tb_bai" />
+        </EntityType>
+        <EntityType Name="tb_cauhoi">
+          <Key>
+            <PropertyRef Name="id_cauhoi" />
+          </Key>
+          <Property Name="id_cauhoi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_bai" Type="Int32" Nullable="false" />
+          <Property Name="xuat_ban" Type="Boolean" Nullable="false" />
+          <Property Name="loai_cau_hoi" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phuong_thuc_check_dap_an" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ngay_tao" Type="DateTime" />
+          <Property Name="gia_tri_dung" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="thu_tu" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_bai" Relationship="Self.fk_tb_cauhoi_tb_bai1" FromRole="tb_cauhoi" ToRole="tb_bai" />
+          <NavigationProperty Name="tb_comment" Relationship="Self.fk_comment_cauhoi" FromRole="tb_cauhoi" ToRole="tb_comment" />
+          <NavigationProperty Name="tb_dapan" Relationship="Self.fk_DapAn_CauHoi" FromRole="tb_cauhoi" ToRole="tb_dapan" />
+          <NavigationProperty Name="tb_templatenoidung" Relationship="Self.tb_cauhoi_templatenoidung" FromRole="tb_cauhoi" ToRole="tb_templatenoidung" />
+        </EntityType>
+        <EntityType Name="tb_chuyende">
+          <Key>
+            <PropertyRef Name="id_chuyende" />
+          </Key>
+          <Property Name="id_chuyende" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_thuvien" Type="Int32" Nullable="false" />
+          <Property Name="ten_chuyende" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ngay_tao" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="tb_bai" Relationship="Self.fk_Bai_Chuyende" FromRole="tb_chuyende" ToRole="tb_bai" />
+          <NavigationProperty Name="tb_thuvien" Relationship="Self.fk_Chuyende_Thuvien" FromRole="tb_chuyende" ToRole="tb_thuvien" />
+        </EntityType>
+        <EntityType Name="tb_comment">
+          <Key>
+            <PropertyRef Name="id_comment" />
+          </Key>
+          <Property Name="id_comment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_account" Type="Int32" Nullable="false" />
+          <Property Name="id_cauhoi" Type="Int32" Nullable="false" />
+          <Property Name="ngay_tao" Type="DateTime" />
+          <Property Name="noi_dung" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="reply_for" Type="Int32" />
+          <NavigationProperty Name="tb_account" Relationship="Self.fk_comment_account" FromRole="tb_comment" ToRole="tb_account" />
+          <NavigationProperty Name="tb_cauhoi" Relationship="Self.fk_comment_cauhoi" FromRole="tb_comment" ToRole="tb_cauhoi" />
+          <NavigationProperty Name="tb_comment1" Relationship="Self.fk_selfref_replyfor" FromRole="tb_comment" ToRole="tb_comment1" />
+          <NavigationProperty Name="tb_comment2" Relationship="Self.fk_selfref_replyfor" FromRole="tb_comment1" ToRole="tb_comment" />
+        </EntityType>
+        <EntityType Name="tb_dapan">
+          <Key>
+            <PropertyRef Name="id_dapan" />
+          </Key>
+          <Property Name="id_dapan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cauhoi" Type="Int32" Nullable="false" />
+          <Property Name="loai_dap_an" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_cauhoi" Relationship="Self.fk_DapAn_CauHoi" FromRole="tb_dapan" ToRole="tb_cauhoi" />
+          <NavigationProperty Name="tb_dapan_danhdau" Relationship="Self.fk_dapandanhdau_dapan" FromRole="tb_dapan" ToRole="tb_dapan_danhdau" />
+          <NavigationProperty Name="tb_dapan_dientext" Relationship="Self.fk_dapandientext_dapan" FromRole="tb_dapan" ToRole="tb_dapan_dientext" />
+          <NavigationProperty Name="tb_dapan_sapxep" Relationship="Self.fk_dapansapxep_dapan" FromRole="tb_dapan" ToRole="tb_dapan_sapxep" />
+          <NavigationProperty Name="tb_dapan_singlechoice" Relationship="Self.fk_DapAnSingleChoice_DapAn" FromRole="tb_dapan" ToRole="tb_dapan_singlechoice" />
+        </EntityType>
+        <EntityType Name="tb_dapan_danhdau">
+          <Key>
+            <PropertyRef Name="id_dapan" />
+          </Key>
+          <Property Name="id_dapan" Type="Int32" Nullable="false" />
+          <Property Name="vitri_dung" Type="Int32" />
+          <NavigationProperty Name="tb_dapan" Relationship="Self.fk_dapandanhdau_dapan" FromRole="tb_dapan_danhdau" ToRole="tb_dapan" />
+        </EntityType>
+        <EntityType Name="tb_dapan_dientext">
+          <Key>
+            <PropertyRef Name="id_dapan" />
+          </Key>
+          <Property Name="id_dapan" Type="Int32" Nullable="false" />
+          <Property Name="giatri_dung" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="help_text" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="phuongthuc_check_dapan" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_dapan" Relationship="Self.fk_dapandientext_dapan" FromRole="tb_dapan_dientext" ToRole="tb_dapan" />
+        </EntityType>
+        <EntityType Name="tb_dapan_sapxep">
+          <Key>
+            <PropertyRef Name="id_dapan" />
+          </Key>
+          <Property Name="id_dapan" Type="Int32" Nullable="false" />
+          <Property Name="giatri" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="noidung_hienthi" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="vitri_dung" Type="Int32" />
+          <NavigationProperty Name="tb_dapan" Relationship="Self.fk_dapansapxep_dapan" FromRole="tb_dapan_sapxep" ToRole="tb_dapan" />
+        </EntityType>
+        <EntityType Name="tb_dapan_singlechoice">
+          <Key>
+            <PropertyRef Name="id_dapan" />
+          </Key>
+          <Property Name="id_dapan" Type="Int32" Nullable="false" />
+          <Property Name="noidung" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="dapan_dung" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tb_dapan" Relationship="Self.fk_DapAnSingleChoice_DapAn" FromRole="tb_dapan_singlechoice" ToRole="tb_dapan" />
+        </EntityType>
+        <EntityType Name="tb_templatenoidung">
+          <Key>
+            <PropertyRef Name="id_templatenoidung" />
+          </Key>
+          <Property Name="id_templatenoidung" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="loai_template" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_templatenoidung_bainghe" Relationship="Self.fk_bainghe_templatenoidung" FromRole="tb_templatenoidung" ToRole="tb_templatenoidung_bainghe" />
+          <NavigationProperty Name="tb_templatenoidung_hinhanh" Relationship="Self.fk_hinhanh_tempatenoidung" FromRole="tb_templatenoidung" ToRole="tb_templatenoidung_hinhanh" />
+          <NavigationProperty Name="tb_templatenoidung_text" Relationship="Self.fk_NDText_TemplateND" FromRole="tb_templatenoidung" ToRole="tb_templatenoidung_text" />
+          <NavigationProperty Name="tb_bai" Relationship="Self.tb_bai_templatenoidung" FromRole="tb_templatenoidung" ToRole="tb_bai" />
+          <NavigationProperty Name="tb_cauhoi" Relationship="Self.tb_cauhoi_templatenoidung" FromRole="tb_templatenoidung" ToRole="tb_cauhoi" />
+        </EntityType>
+        <EntityType Name="tb_templatenoidung_bainghe">
+          <Key>
+            <PropertyRef Name="id_templatenoidung" />
+          </Key>
+          <Property Name="id_templatenoidung" Type="Int32" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_templatenoidung" Relationship="Self.fk_bainghe_templatenoidung" FromRole="tb_templatenoidung_bainghe" ToRole="tb_templatenoidung" />
+        </EntityType>
+        <EntityType Name="tb_templatenoidung_hinhanh">
+          <Key>
+            <PropertyRef Name="id_templatenoidung" />
+          </Key>
+          <Property Name="id_templatenoidung" Type="Int32" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_templatenoidung" Relationship="Self.fk_hinhanh_tempatenoidung" FromRole="tb_templatenoidung_hinhanh" ToRole="tb_templatenoidung" />
+          <NavigationProperty Name="tb_templatenoidunghinhanh_format" Relationship="Self.tb_templatenoidunghinhanh_format_mapping" FromRole="tb_templatenoidung_hinhanh" ToRole="tb_templatenoidunghinhanh_format" />
+        </EntityType>
+        <EntityType Name="tb_templatenoidung_text">
+          <Key>
+            <PropertyRef Name="id_templatenoidung" />
+          </Key>
+          <Property Name="id_templatenoidung" Type="Int32" Nullable="false" />
+          <Property Name="noidung" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_templatenoidung" Relationship="Self.fk_NDText_TemplateND" FromRole="tb_templatenoidung_text" ToRole="tb_templatenoidung" />
+          <NavigationProperty Name="tb_templatenoidungtext_format" Relationship="Self.tb_templatenoidungtext_format_mapping" FromRole="tb_templatenoidung_text" ToRole="tb_templatenoidungtext_format" />
+        </EntityType>
+        <EntityType Name="tb_templatenoidunghinhanh_format">
+          <Key>
+            <PropertyRef Name="id_format" />
+          </Key>
+          <Property Name="id_format" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_templatenoidunghinhanh" Type="Int32" Nullable="false" />
+          <Property Name="width" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="height" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="alignment" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_templatenoidung_hinhanh" Relationship="Self.tb_templatenoidunghinhanh_format_mapping" FromRole="tb_templatenoidunghinhanh_format" ToRole="tb_templatenoidung_hinhanh" />
+        </EntityType>
+        <EntityType Name="tb_templatenoidungtext_format">
+          <Key>
+            <PropertyRef Name="id_format" />
+          </Key>
+          <Property Name="id_format" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_templatenoidungtext" Type="Int32" Nullable="false" />
+          <Property Name="ckeditor_text_format" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="template_width" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="template_heigth" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="template_alignment" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_templatenoidung_text" Relationship="Self.tb_templatenoidungtext_format_mapping" FromRole="tb_templatenoidungtext_format" ToRole="tb_templatenoidung_text" />
+        </EntityType>
+        <EntityType Name="tb_thuvien">
+          <Key>
+            <PropertyRef Name="id_thuvien" />
+          </Key>
+          <Property Name="id_thuvien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_thuvien" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_chuyende" Relationship="Self.fk_Chuyende_Thuvien" FromRole="tb_thuvien" ToRole="tb_chuyende" />
+        </EntityType>
+        <EntityType Name="tb_user">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_account" Relationship="Self.fk_Account_User" FromRole="tb_user" ToRole="tb_account" />
+        </EntityType>
+        <Association Name="fk_Account_User">
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_account" Type="Self.tb_account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_user">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="tb_account">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_baimau_account">
+          <End Role="tb_account" Type="Self.tb_account" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_baimau" Type="Self.tb_baimau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_account">
+              <PropertyRef Name="id_account" />
+            </Principal>
+            <Dependent Role="tb_baimau">
+              <PropertyRef Name="id_account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_comment_account">
+          <End Role="tb_account" Type="Self.tb_account" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_comment" Type="Self.tb_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_account">
+              <PropertyRef Name="id_account" />
+            </Principal>
+            <Dependent Role="tb_comment">
+              <PropertyRef Name="id_account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Bai_Chuyende">
+          <End Role="tb_chuyende" Type="Self.tb_chuyende" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_bai" Type="Self.tb_bai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_chuyende">
+              <PropertyRef Name="id_chuyende" />
+            </Principal>
+            <Dependent Role="tb_bai">
+              <PropertyRef Name="id_chuyende" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_baimau_bai">
+          <End Role="tb_bai" Type="Self.tb_bai" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_baimau" Type="Self.tb_baimau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_bai">
+              <PropertyRef Name="id_bai" />
+            </Principal>
+            <Dependent Role="tb_baimau">
+              <PropertyRef Name="id_bai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_cauhoi_tb_bai1">
+          <End Role="tb_bai" Type="Self.tb_bai" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_cauhoi" Type="Self.tb_cauhoi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_bai">
+              <PropertyRef Name="id_bai" />
+            </Principal>
+            <Dependent Role="tb_cauhoi">
+              <PropertyRef Name="id_bai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_comment_cauhoi">
+          <End Role="tb_cauhoi" Type="Self.tb_cauhoi" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_comment" Type="Self.tb_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cauhoi">
+              <PropertyRef Name="id_cauhoi" />
+            </Principal>
+            <Dependent Role="tb_comment">
+              <PropertyRef Name="id_cauhoi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DapAn_CauHoi">
+          <End Role="tb_cauhoi" Type="Self.tb_cauhoi" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_dapan" Type="Self.tb_dapan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cauhoi">
+              <PropertyRef Name="id_cauhoi" />
+            </Principal>
+            <Dependent Role="tb_dapan">
+              <PropertyRef Name="id_cauhoi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Chuyende_Thuvien">
+          <End Role="tb_thuvien" Type="Self.tb_thuvien" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_chuyende" Type="Self.tb_chuyende" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_thuvien">
+              <PropertyRef Name="id_thuvien" />
+            </Principal>
+            <Dependent Role="tb_chuyende">
+              <PropertyRef Name="id_thuvien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_selfref_replyfor">
+          <End Role="tb_comment" Type="Self.tb_comment" Multiplicity="0..1" />
+          <End Role="tb_comment1" Type="Self.tb_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_comment">
+              <PropertyRef Name="id_comment" />
+            </Principal>
+            <Dependent Role="tb_comment1">
+              <PropertyRef Name="reply_for" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dapandanhdau_dapan">
+          <End Role="tb_dapan" Type="Self.tb_dapan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_dapan_danhdau" Type="Self.tb_dapan_danhdau" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_dapan">
+              <PropertyRef Name="id_dapan" />
+            </Principal>
+            <Dependent Role="tb_dapan_danhdau">
+              <PropertyRef Name="id_dapan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dapandientext_dapan">
+          <End Role="tb_dapan" Type="Self.tb_dapan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_dapan_dientext" Type="Self.tb_dapan_dientext" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_dapan">
+              <PropertyRef Name="id_dapan" />
+            </Principal>
+            <Dependent Role="tb_dapan_dientext">
+              <PropertyRef Name="id_dapan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dapansapxep_dapan">
+          <End Role="tb_dapan" Type="Self.tb_dapan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_dapan_sapxep" Type="Self.tb_dapan_sapxep" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_dapan">
+              <PropertyRef Name="id_dapan" />
+            </Principal>
+            <Dependent Role="tb_dapan_sapxep">
+              <PropertyRef Name="id_dapan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DapAnSingleChoice_DapAn">
+          <End Role="tb_dapan" Type="Self.tb_dapan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_dapan_singlechoice" Type="Self.tb_dapan_singlechoice" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_dapan">
+              <PropertyRef Name="id_dapan" />
+            </Principal>
+            <Dependent Role="tb_dapan_singlechoice">
+              <PropertyRef Name="id_dapan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bainghe_templatenoidung">
+          <End Role="tb_templatenoidung" Type="Self.tb_templatenoidung" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_templatenoidung_bainghe" Type="Self.tb_templatenoidung_bainghe" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_templatenoidung">
+              <PropertyRef Name="id_templatenoidung" />
+            </Principal>
+            <Dependent Role="tb_templatenoidung_bainghe">
+              <PropertyRef Name="id_templatenoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_hinhanh_tempatenoidung">
+          <End Role="tb_templatenoidung" Type="Self.tb_templatenoidung" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_templatenoidung_hinhanh" Type="Self.tb_templatenoidung_hinhanh" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_templatenoidung">
+              <PropertyRef Name="id_templatenoidung" />
+            </Principal>
+            <Dependent Role="tb_templatenoidung_hinhanh">
+              <PropertyRef Name="id_templatenoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_NDText_TemplateND">
+          <End Role="tb_templatenoidung" Type="Self.tb_templatenoidung" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_templatenoidung_text" Type="Self.tb_templatenoidung_text" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_templatenoidung">
+              <PropertyRef Name="id_templatenoidung" />
+            </Principal>
+            <Dependent Role="tb_templatenoidung_text">
+              <PropertyRef Name="id_templatenoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tb_bai_templatenoidung">
+          <End Role="tb_bai" Type="Self.tb_bai" Multiplicity="*" />
+          <End Role="tb_templatenoidung" Type="Self.tb_templatenoidung" Multiplicity="*" />
+        </Association>
+        <Association Name="tb_cauhoi_templatenoidung">
+          <End Role="tb_cauhoi" Type="Self.tb_cauhoi" Multiplicity="*" />
+          <End Role="tb_templatenoidung" Type="Self.tb_templatenoidung" Multiplicity="*" />
+        </Association>
+        <Association Name="tb_templatenoidunghinhanh_format_mapping">
+          <End Role="tb_templatenoidunghinhanh_format" Type="Self.tb_templatenoidunghinhanh_format" Multiplicity="*" />
+          <End Role="tb_templatenoidung_hinhanh" Type="Self.tb_templatenoidung_hinhanh" Multiplicity="*" />
+        </Association>
+        <Association Name="tb_templatenoidungtext_format_mapping">
+          <End Role="tb_templatenoidung_text" Type="Self.tb_templatenoidung_text" Multiplicity="*" />
+          <End Role="tb_templatenoidungtext_format" Type="Self.tb_templatenoidungtext_format" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="appbookEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_account" EntityType="Self.tb_account" />
+          <EntitySet Name="tb_bai" EntityType="Self.tb_bai" />
+          <EntitySet Name="tb_baimau" EntityType="Self.tb_baimau" />
+          <EntitySet Name="tb_cauhoi" EntityType="Self.tb_cauhoi" />
+          <EntitySet Name="tb_chuyende" EntityType="Self.tb_chuyende" />
+          <EntitySet Name="tb_comment" EntityType="Self.tb_comment" />
+          <EntitySet Name="tb_dapan" EntityType="Self.tb_dapan" />
+          <EntitySet Name="tb_dapan_danhdau" EntityType="Self.tb_dapan_danhdau" />
+          <EntitySet Name="tb_dapan_dientext" EntityType="Self.tb_dapan_dientext" />
+          <EntitySet Name="tb_dapan_sapxep" EntityType="Self.tb_dapan_sapxep" />
+          <EntitySet Name="tb_dapan_singlechoice" EntityType="Self.tb_dapan_singlechoice" />
+          <EntitySet Name="tb_templatenoidung" EntityType="Self.tb_templatenoidung" />
+          <EntitySet Name="tb_templatenoidung_bainghe" EntityType="Self.tb_templatenoidung_bainghe" />
+          <EntitySet Name="tb_templatenoidung_hinhanh" EntityType="Self.tb_templatenoidung_hinhanh" />
+          <EntitySet Name="tb_templatenoidung_text" EntityType="Self.tb_templatenoidung_text" />
+          <EntitySet Name="tb_templatenoidunghinhanh_format" EntityType="Self.tb_templatenoidunghinhanh_format" />
+          <EntitySet Name="tb_templatenoidungtext_format" EntityType="Self.tb_templatenoidungtext_format" />
+          <EntitySet Name="tb_thuvien" EntityType="Self.tb_thuvien" />
+          <EntitySet Name="tb_user" EntityType="Self.tb_user" />
+          <AssociationSet Name="fk_Account_User" Association="Self.fk_Account_User">
+            <End Role="tb_user" EntitySet="tb_user" />
+            <End Role="tb_account" EntitySet="tb_account" />
+          </AssociationSet>
+          <AssociationSet Name="fk_baimau_account" Association="Self.fk_baimau_account">
+            <End Role="tb_account" EntitySet="tb_account" />
+            <End Role="tb_baimau" EntitySet="tb_baimau" />
+          </AssociationSet>
+          <AssociationSet Name="fk_comment_account" Association="Self.fk_comment_account">
+            <End Role="tb_account" EntitySet="tb_account" />
+            <End Role="tb_comment" EntitySet="tb_comment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Bai_Chuyende" Association="Self.fk_Bai_Chuyende">
+            <End Role="tb_chuyende" EntitySet="tb_chuyende" />
+            <End Role="tb_bai" EntitySet="tb_bai" />
+          </AssociationSet>
+          <AssociationSet Name="fk_baimau_bai" Association="Self.fk_baimau_bai">
+            <End Role="tb_bai" EntitySet="tb_bai" />
+            <End Role="tb_baimau" EntitySet="tb_baimau" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_cauhoi_tb_bai1" Association="Self.fk_tb_cauhoi_tb_bai1">
+            <End Role="tb_bai" EntitySet="tb_bai" />
+            <End Role="tb_cauhoi" EntitySet="tb_cauhoi" />
+          </AssociationSet>
+          <AssociationSet Name="fk_comment_cauhoi" Association="Self.fk_comment_cauhoi">
+            <End Role="tb_cauhoi" EntitySet="tb_cauhoi" />
+            <End Role="tb_comment" EntitySet="tb_comment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DapAn_CauHoi" Association="Self.fk_DapAn_CauHoi">
+            <End Role="tb_cauhoi" EntitySet="tb_cauhoi" />
+            <End Role="tb_dapan" EntitySet="tb_dapan" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Chuyende_Thuvien" Association="Self.fk_Chuyende_Thuvien">
+            <End Role="tb_thuvien" EntitySet="tb_thuvien" />
+            <End Role="tb_chuyende" EntitySet="tb_chuyende" />
+          </AssociationSet>
+          <AssociationSet Name="fk_selfref_replyfor" Association="Self.fk_selfref_replyfor">
+            <End Role="tb_comment" EntitySet="tb_comment" />
+            <End Role="tb_comment1" EntitySet="tb_comment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dapandanhdau_dapan" Association="Self.fk_dapandanhdau_dapan">
+            <End Role="tb_dapan" EntitySet="tb_dapan" />
+            <End Role="tb_dapan_danhdau" EntitySet="tb_dapan_danhdau" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dapandientext_dapan" Association="Self.fk_dapandientext_dapan">
+            <End Role="tb_dapan" EntitySet="tb_dapan" />
+            <End Role="tb_dapan_dientext" EntitySet="tb_dapan_dientext" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dapansapxep_dapan" Association="Self.fk_dapansapxep_dapan">
+            <End Role="tb_dapan" EntitySet="tb_dapan" />
+            <End Role="tb_dapan_sapxep" EntitySet="tb_dapan_sapxep" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DapAnSingleChoice_DapAn" Association="Self.fk_DapAnSingleChoice_DapAn">
+            <End Role="tb_dapan" EntitySet="tb_dapan" />
+            <End Role="tb_dapan_singlechoice" EntitySet="tb_dapan_singlechoice" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bainghe_templatenoidung" Association="Self.fk_bainghe_templatenoidung">
+            <End Role="tb_templatenoidung" EntitySet="tb_templatenoidung" />
+            <End Role="tb_templatenoidung_bainghe" EntitySet="tb_templatenoidung_bainghe" />
+          </AssociationSet>
+          <AssociationSet Name="fk_hinhanh_tempatenoidung" Association="Self.fk_hinhanh_tempatenoidung">
+            <End Role="tb_templatenoidung" EntitySet="tb_templatenoidung" />
+            <End Role="tb_templatenoidung_hinhanh" EntitySet="tb_templatenoidung_hinhanh" />
+          </AssociationSet>
+          <AssociationSet Name="fk_NDText_TemplateND" Association="Self.fk_NDText_TemplateND">
+            <End Role="tb_templatenoidung" EntitySet="tb_templatenoidung" />
+            <End Role="tb_templatenoidung_text" EntitySet="tb_templatenoidung_text" />
+          </AssociationSet>
+          <AssociationSet Name="tb_bai_templatenoidung" Association="Self.tb_bai_templatenoidung">
+            <End Role="tb_bai" EntitySet="tb_bai" />
+            <End Role="tb_templatenoidung" EntitySet="tb_templatenoidung" />
+          </AssociationSet>
+          <AssociationSet Name="tb_cauhoi_templatenoidung" Association="Self.tb_cauhoi_templatenoidung">
+            <End Role="tb_cauhoi" EntitySet="tb_cauhoi" />
+            <End Role="tb_templatenoidung" EntitySet="tb_templatenoidung" />
+          </AssociationSet>
+          <AssociationSet Name="tb_templatenoidunghinhanh_format_mapping" Association="Self.tb_templatenoidunghinhanh_format_mapping">
+            <End Role="tb_templatenoidunghinhanh_format" EntitySet="tb_templatenoidunghinhanh_format" />
+            <End Role="tb_templatenoidung_hinhanh" EntitySet="tb_templatenoidung_hinhanh" />
+          </AssociationSet>
+          <AssociationSet Name="tb_templatenoidungtext_format_mapping" Association="Self.tb_templatenoidungtext_format_mapping">
+            <End Role="tb_templatenoidung_text" EntitySet="tb_templatenoidung_text" />
+            <End Role="tb_templatenoidungtext_format" EntitySet="tb_templatenoidungtext_format" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="appbookModelStoreContainer" CdmEntityContainer="appbookEntities2">
+          <EntitySetMapping Name="tb_account">
+            <EntityTypeMapping TypeName="appbookModel.tb_account">
+              <MappingFragment StoreEntitySet="tb_account">
+                <ScalarProperty Name="id_account" ColumnName="id_account" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_bai">
+            <EntityTypeMapping TypeName="appbookModel.tb_bai">
+              <MappingFragment StoreEntitySet="tb_bai">
+                <ScalarProperty Name="id_bai" ColumnName="id_bai" />
+                <ScalarProperty Name="id_chuyende" ColumnName="id_chuyende" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+                <ScalarProperty Name="xuat_ban" ColumnName="xuat_ban" />
+                <ScalarProperty Name="thu_tu" ColumnName="thu_tu" />
+                <ScalarProperty Name="bai_mau" ColumnName="bai_mau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_baimau">
+            <EntityTypeMapping TypeName="appbookModel.tb_baimau">
+              <MappingFragment StoreEntitySet="tb_baimau">
+                <ScalarProperty Name="id_baimau" ColumnName="id_baimau" />
+                <ScalarProperty Name="id_bai" ColumnName="id_bai" />
+                <ScalarProperty Name="id_account" ColumnName="id_account" />
+                <ScalarProperty Name="ten_baimau" ColumnName="ten_baimau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_cauhoi">
+            <EntityTypeMapping TypeName="appbookModel.tb_cauhoi">
+              <MappingFragment StoreEntitySet="tb_cauhoi">
+                <ScalarProperty Name="id_cauhoi" ColumnName="id_cauhoi" />
+                <ScalarProperty Name="id_bai" ColumnName="id_bai" />
+                <ScalarProperty Name="xuat_ban" ColumnName="xuat_ban" />
+                <ScalarProperty Name="loai_cau_hoi" ColumnName="loai_cau_hoi" />
+                <ScalarProperty Name="phuong_thuc_check_dap_an" ColumnName="phuong_thuc_check_dap_an" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+                <ScalarProperty Name="gia_tri_dung" ColumnName="gia_tri_dung" />
+                <ScalarProperty Name="thu_tu" ColumnName="thu_tu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_chuyende">
+            <EntityTypeMapping TypeName="appbookModel.tb_chuyende">
+              <MappingFragment StoreEntitySet="tb_chuyende">
+                <ScalarProperty Name="id_chuyende" ColumnName="id_chuyende" />
+                <ScalarProperty Name="id_thuvien" ColumnName="id_thuvien" />
+                <ScalarProperty Name="ten_chuyende" ColumnName="ten_chuyende" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_comment">
+            <EntityTypeMapping TypeName="appbookModel.tb_comment">
+              <MappingFragment StoreEntitySet="tb_comment">
+                <ScalarProperty Name="id_comment" ColumnName="id_comment" />
+                <ScalarProperty Name="id_account" ColumnName="id_account" />
+                <ScalarProperty Name="id_cauhoi" ColumnName="id_cauhoi" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+                <ScalarProperty Name="noi_dung" ColumnName="noi_dung" />
+                <ScalarProperty Name="reply_for" ColumnName="reply_for" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_dapan">
+            <EntityTypeMapping TypeName="appbookModel.tb_dapan">
+              <MappingFragment StoreEntitySet="tb_dapan">
+                <ScalarProperty Name="id_dapan" ColumnName="id_dapan" />
+                <ScalarProperty Name="id_cauhoi" ColumnName="id_cauhoi" />
+                <ScalarProperty Name="loai_dap_an" ColumnName="loai_dap_an" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_dapan_danhdau">
+            <EntityTypeMapping TypeName="appbookModel.tb_dapan_danhdau">
+              <MappingFragment StoreEntitySet="tb_dapan_danhdau">
+                <ScalarProperty Name="id_dapan" ColumnName="id_dapan" />
+                <ScalarProperty Name="vitri_dung" ColumnName="vitri_dung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_dapan_dientext">
+            <EntityTypeMapping TypeName="appbookModel.tb_dapan_dientext">
+              <MappingFragment StoreEntitySet="tb_dapan_dientext">
+                <ScalarProperty Name="id_dapan" ColumnName="id_dapan" />
+                <ScalarProperty Name="giatri_dung" ColumnName="giatri_dung" />
+                <ScalarProperty Name="help_text" ColumnName="help_text" />
+                <ScalarProperty Name="phuongthuc_check_dapan" ColumnName="phuongthuc_check_dapan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_dapan_sapxep">
+            <EntityTypeMapping TypeName="appbookModel.tb_dapan_sapxep">
+              <MappingFragment StoreEntitySet="tb_dapan_sapxep">
+                <ScalarProperty Name="id_dapan" ColumnName="id_dapan" />
+                <ScalarProperty Name="giatri" ColumnName="giatri" />
+                <ScalarProperty Name="noidung_hienthi" ColumnName="noidung_hienthi" />
+                <ScalarProperty Name="vitri_dung" ColumnName="vitri_dung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_dapan_singlechoice">
+            <EntityTypeMapping TypeName="appbookModel.tb_dapan_singlechoice">
+              <MappingFragment StoreEntitySet="tb_dapan_singlechoice">
+                <ScalarProperty Name="id_dapan" ColumnName="id_dapan" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+                <ScalarProperty Name="dapan_dung" ColumnName="dapan_dung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_templatenoidung">
+            <EntityTypeMapping TypeName="appbookModel.tb_templatenoidung">
+              <MappingFragment StoreEntitySet="tb_templatenoidung">
+                <ScalarProperty Name="id_templatenoidung" ColumnName="id_templatenoidung" />
+                <ScalarProperty Name="loai_template" ColumnName="loai_template" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_templatenoidung_bainghe">
+            <EntityTypeMapping TypeName="appbookModel.tb_templatenoidung_bainghe">
+              <MappingFragment StoreEntitySet="tb_templatenoidung_bainghe">
+                <ScalarProperty Name="id_templatenoidung" ColumnName="id_templatenoidung" />
+                <ScalarProperty Name="url" ColumnName="url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_templatenoidung_hinhanh">
+            <EntityTypeMapping TypeName="appbookModel.tb_templatenoidung_hinhanh">
+              <MappingFragment StoreEntitySet="tb_templatenoidung_hinhanh">
+                <ScalarProperty Name="id_templatenoidung" ColumnName="id_templatenoidung" />
+                <ScalarProperty Name="url" ColumnName="url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_templatenoidung_text">
+            <EntityTypeMapping TypeName="appbookModel.tb_templatenoidung_text">
+              <MappingFragment StoreEntitySet="tb_templatenoidung_text">
+                <ScalarProperty Name="id_templatenoidung" ColumnName="id_templatenoidung" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_templatenoidunghinhanh_format">
+            <EntityTypeMapping TypeName="appbookModel.tb_templatenoidunghinhanh_format">
+              <MappingFragment StoreEntitySet="tb_templatenoidunghinhanh_format">
+                <ScalarProperty Name="id_format" ColumnName="id_format" />
+                <ScalarProperty Name="id_templatenoidunghinhanh" ColumnName="id_templatenoidunghinhanh" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="height" ColumnName="height" />
+                <ScalarProperty Name="alignment" ColumnName="alignment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_templatenoidungtext_format">
+            <EntityTypeMapping TypeName="appbookModel.tb_templatenoidungtext_format">
+              <MappingFragment StoreEntitySet="tb_templatenoidungtext_format">
+                <ScalarProperty Name="id_format" ColumnName="id_format" />
+                <ScalarProperty Name="id_templatenoidungtext" ColumnName="id_templatenoidungtext" />
+                <ScalarProperty Name="ckeditor_text_format" ColumnName="ckeditor_text_format" />
+                <ScalarProperty Name="template_width" ColumnName="template_width" />
+                <ScalarProperty Name="template_heigth" ColumnName="template_heigth" />
+                <ScalarProperty Name="template_alignment" ColumnName="template_alignment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_thuvien">
+            <EntityTypeMapping TypeName="appbookModel.tb_thuvien">
+              <MappingFragment StoreEntitySet="tb_thuvien">
+                <ScalarProperty Name="id_thuvien" ColumnName="id_thuvien" />
+                <ScalarProperty Name="ten_thuvien" ColumnName="ten_thuvien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_user">
+            <EntityTypeMapping TypeName="appbookModel.tb_user">
+              <MappingFragment StoreEntitySet="tb_user">
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="user_type" ColumnName="user_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="tb_bai_templatenoidung" TypeName="appbookModel.tb_bai_templatenoidung" StoreEntitySet="tb_bai_templatenoidung">
+            <EndProperty Name="tb_bai">
+              <ScalarProperty Name="id_bai" ColumnName="id_bai" />
+            </EndProperty>
+            <EndProperty Name="tb_templatenoidung">
+              <ScalarProperty Name="id_templatenoidung" ColumnName="id_templatenoidung" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tb_cauhoi_templatenoidung" TypeName="appbookModel.tb_cauhoi_templatenoidung" StoreEntitySet="tb_cauhoi_templatenoidung">
+            <EndProperty Name="tb_cauhoi">
+              <ScalarProperty Name="id_cauhoi" ColumnName="id_cauhoi" />
+            </EndProperty>
+            <EndProperty Name="tb_templatenoidung">
+              <ScalarProperty Name="id_templatenoidung" ColumnName="id_templatenoidung" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tb_templatenoidunghinhanh_format_mapping" TypeName="appbookModel.tb_templatenoidunghinhanh_format_mapping" StoreEntitySet="tb_templatenoidunghinhanh_format_mapping">
+            <EndProperty Name="tb_templatenoidunghinhanh_format">
+              <ScalarProperty Name="id_format" ColumnName="id_format" />
+            </EndProperty>
+            <EndProperty Name="tb_templatenoidung_hinhanh">
+              <ScalarProperty Name="id_templatenoidung" ColumnName="id_templatenoidung" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tb_templatenoidungtext_format_mapping" TypeName="appbookModel.tb_templatenoidungtext_format_mapping" StoreEntitySet="tb_templatenoidungtext_format_mapping">
+            <EndProperty Name="tb_templatenoidung_text">
+              <ScalarProperty Name="id_templatenoidung" ColumnName="id_templatenoidung" />
+            </EndProperty>
+            <EndProperty Name="tb_templatenoidungtext_format">
+              <ScalarProperty Name="id_format" ColumnName="id_templatenoidung_text" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

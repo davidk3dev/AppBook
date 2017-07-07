@@ -1,0 +1,141 @@
+#form-taomoi-thuvien {
+    padding: 25px 25px 25px 25px;
+    border-bottom: 1px solid #bbbbbb;
+    background-color: white;
+}
+
+ul#tree {
+    list-style-type: none;
+}
+
+ul#tree li {
+    display: flex;
+    overflow: hidden;
+}
+
+ul#tree li .node-header {
+    /* margin-right: 23px; */
+    cursor: pointer;
+    width: 30px;
+}
+
+ul#tree li .node-content {
+    width: 100%;
+}
+
+ul#tree li .form-display {
+    display: flex;
+    display: block;
+    clear: both;
+    border: 1px solid #c1c1c1;
+    float: left;
+    padding: 5px 20px;
+    border-radius: 3px;
+}
+
+ul#tree li ul[name='child-container'] {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    clear: both;
+}
+
+ul#tree li .form-display .node-icon {
+
+margin-right: 10px;
+
+/* color: #924d6c; */
+
+float: left;
+}
+
+ul#tree li .form-display .display-text {
+
+float: left;
+}
+
+ul#tree li .form-display .actions {
+    /* flex-grow: 1; */
+    margin-left: 80px;
+    float: left;
+    clear: right;
+}
+
+ul#tree li .form-display .actions .node-action-button {
+    cursor: pointer;
+    padding: 0px 2px;
+}
+.node-action-button > .button-text{
+
+font-weight: normal;
+}
+.node-action-button > .button-text:hover{
+    text-decoration: underline;
+}
+
+ul#tree li .form-editing {
+
+}
+
+.form-display .actions {
+    display: none;
+}
+
+.form-display:hover .actions {
+    display: block;
+}
+
+ul[name='child-container'] li {
+    margin: 10px 10px;
+}
+
+ul[name='danhsach-chuyende'] li {
+    /* margin:0px 0px; */
+}
+
+.display-text-info {
+    color: #ab4250;
+    margin-left: 35px;
+    font-weight: normal;
+}
+.display-text-info:hover {
+    /* text-decoration: underline; */
+    /* cursor: pointer; */
+}
+* {
+    target-new: tab ! important
+}
+
+#tree-container{
+    
+/* border: 1px solid #bdbdbd; */
+    
+height: 100%;
+    
+background-color: white;
+    
+padding: 25px;
+    
+/* box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12); */
+    
+font-weight: bold;
+    
+color: #504040;
+}
+#content-wraper{
+    
+box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
+    
+width: 100%;
+    
+display: flex;
+    
+flex-direction: column;
+}
+ul[name='danhsach-chuyende']{
+
+clear: both;
+}
+ul[name='danhsach-dethi']{
+
+clear: both;
+}

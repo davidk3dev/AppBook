@@ -1,0 +1,182 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+.footer-button button{
+    min-width: 100px;
+}
+
+div#page-content {
+    width: 100%;
+    height: 100%;
+}
+
+div#page-container {
+    width: 100%;
+    height: 100%;
+}
+
+div#page-wraper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+html, body{
+    width:100%;
+    height:100%;
+}
+
+#form-taomoi-thuvien {
+    padding: 25px 25px 25px 25px;
+    border-bottom: 1px solid #bbbbbb;
+    background-color: white;
+}
+
+ul#tree {
+    list-style-type: none;
+}
+
+ul#tree li {
+    display: flex;
+    overflow: hidden;
+}
+
+
+
+li[name='node-thuvien'] {
+    margin-bottom: 20px;
+}
+
+ul#tree li .node-header {
+    /* margin-right: 23px; */
+    cursor: pointer;
+    width: 30px;
+    float: left;
+}
+
+ul#tree li .node-content {
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+}
+
+ul#tree li .form-display {
+    display: flex;
+    display: block;
+    clear: both;
+    /* border: 1px solid #c1c1c1; */
+    float: left;
+    /* padding: 5px 20px; */
+    /* border-radius: 3px; */
+}
+
+ul#tree li ul[name='child-container'] {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    clear: both;
+}
+
+ul#tree li .form-display .node-icon {
+margin-right: 7px;
+/* color: #924d6c; */
+float: left;
+}
+
+ul#tree li .form-display .display-text {
+
+    float: left;
+}
+
+ul#tree li .form-display .actions {
+    /* flex-grow: 1; */
+    margin-left: 80px;
+    float: left;
+    clear: right;
+}
+
+ul#tree li .form-display .actions .node-action-button {
+    cursor: pointer;
+    padding: 0px 2px;
+}
+
+ul#tree li .form-editing {
+
+}
+
+.form-display .actions {
+    display: none;
+}
+
+.form-display:hover .actions {
+    display: block;
+}
+
+ul[name='child-container'] li {
+    margin: 0px 0px 3px 0px;
+}
+
+ul[name='child-container'] .form-display .display-text {
+    /* font-weight: normal; */
+}
+
+ul[name='danhsach-chuyende'] li {
+    /* margin:0px 0px; */
+}
+
+.display-text-info {
+    color: #ab4250;
+    margin-left: 35px;
+    font-weight: normal;
+}
+.display-text-info:hover {
+    /* text-decoration: underline; */
+    /* cursor: pointer; */
+}
+* {
+    target-new: tab ! important
+}
+
+#tree-container{
+
+background-color: white;
+
+font-weight: bold;
+
+color: #504040;
+
+flex-grow: 1;
+}
+#content-wraper{
+
+display: flex;
+
+flex-direction: column;
+
+padding: 75px;
+
+flex-grow: 1;
+}
+ul[name='danhsach-chuyende']{
+
+    clear: both;
+}
+ul[name='danhsach-dethi']{
+
+    clear: both;
+}
+ul[name='danhsach-chuyende'] .display-text{
+    font-weight:normal;
+}
+ul[name='danhsach-chuyende'] li:first-child{
+padding-top: 6px;
+}
+ul[name='danhsach-dethi'] .display-text{
+    font-weight:normal;
+}
+ul[name='danhsach-dethi'] li:first-child{
+padding-top: 7px;
+}
+.form-display .node-selection{
+    padding-right: 12px;
+}

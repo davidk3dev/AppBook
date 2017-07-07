@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    
+    <link href="~/Resource/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Resource/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Resource/css/template-common.css" rel="stylesheet" />
+    <link href="~/Resource/css/dropdown-navigation-menu.css" rel="stylesheet" />
+    <link href="~/Resource/pagecontent/danhsachbai/index.css" rel="stylesheet" />
+    <link href="~/Resource/pagecontent/danhsachbai/index-angular-animate.css" rel="stylesheet" />
+    <link href="~/Resource/pagecontent/danhsachbai/danhsachbai.css" rel="stylesheet" />
+    @RenderSection("Style", false)
+
+    <script src="~/Resource/jquery-3.1.1/jquery-3.1.1.min.js"></script>
+    <script src="~/Resource/jquery-resizable/jquery-resizable.min.js"></script>
+    <script>
+        // rename the local copy of $.fn.autocomplete
+        $.fn.myresizable = $.fn.resizable;
+        delete $.fn.resizable;
+    </script>
+    <script src="~/Resource/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    @RenderSection("Script", false)
+</head>
+<body>
+    <div id="page-wraper">
+        <div id="page-container">
+            <div id="page-header">
+                <div id="menu">
+                    <nav id="primary_nav_wrap">
+							<div id='appLogo'>APPNAME</div>
+                        <ul id="header-menu">
+                            <li><a href="#">QUẢN LÝ SÁCH</a></li>
+                            <li><a href="#">QUẢN LÝ CATEGORY</a></li>
+                            <li><a href="#">QUẢN LÝ CHUYÊN ĐỀ/ĐỀ THI</a></li>
+                            <li><a href="#">QUẢN LÝ TÀI LIỆU</a></li>
+                            <li><a href="#">QUẢN LÝ USER</a></li>
+                        </ul>
+							
+                    </nav>
+                </div>
+            </div>
+            <div id="page-content" class="page-content">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,44 @@
+/*
+Copyright (c) 2014-2016, CKSource - Frederico Knabben. All rights reserved.
+Licensed under the terms of the MIT License (see LICENSE.md).
+*/
+.simplebox{
+	display:inline-block;
+	border:1px solid #e5e5e5;
+	background:#f5f5f5;
+	padding:4px 4px 4px 4px;
+	position:relative;
+	
+}
+.simplebox-close{
+	color:#666;
+	top:3px;
+	right:4px;
+	font-weight:bold;
+}
+
+/*
+.simplebox-title, .simplebox-content {
+	box-shadow: 0 1px 1px #ddd inset;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	background: #fff;
+}
+.simplebox-title {
+	margin: 0 0 8px;
+	padding: 5px 8px;
+}
+.simplebox-content {
+	padding: 0 8px;
+}
+.simplebox.align-right {
+	float: right;
+}
+.simplebox.align-left {
+	float: left;
+}
+.simplebox.align-center {
+	margin-left: auto;
+	margin-right: auto;
+}
+*/
